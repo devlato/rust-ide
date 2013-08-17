@@ -1,0 +1,21 @@
+extern mod protobuf;
+
+use std::io;
+use ided_proto::*;
+use protobuf::MessageUtil;
+
+mod ided_proto;
+
+fn main() {
+    let mut coded_input = protobuf::CodedInputStream::new(io::stdin());
+    loop {
+        let req = protobuf::parse_length_delimited_from::<Request>(&mut coded_input);
+        if req.has_ping() {
+            let mut resp = Response::new();
+            resp.mut_ping();
+            resp.write_length_delimited_to_writer(io::stdout());
+        } else {
+            fail!("unknown request: %?", req);
+        }
+    }
+}

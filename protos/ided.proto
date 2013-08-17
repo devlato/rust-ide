@@ -1,0 +1,23 @@
+package ided;
+
+option java_package = "com.github.stepancheg.rustide.client.proto";
+option java_outer_classname = "IdedProtos";
+
+message Request {
+    message Ping {
+    }
+
+    // for debugging
+    message Unknown {
+    }
+
+    optional Ping ping = 1;
+    optional Unknown unknown_command = 999;
+}
+
+message Response {
+    message Ping {
+    }
+
+    optional Ping ping = 1;
+}

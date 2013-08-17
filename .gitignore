@@ -1,0 +1,8 @@
+*.dSYM
+ided/ided
+
+# java stuff
+.idea
+*.iml
+out
+lib
