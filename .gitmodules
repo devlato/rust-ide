@@ -1,3 +1,6 @@
 [submodule "rust"]
 	path = rust
 	url = git@github.com:stepancheg/rust-ide-rust.git
+[submodule "rust-protobuf"]
+	path = rust-protobuf
+	url = git@github.com:stepancheg/rust-protobuf.git
