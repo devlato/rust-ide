@@ -3,8 +3,48 @@ package ided;
 option java_package = "com.github.stepancheg.rustide.client.proto";
 option java_outer_classname = "IdedProtos";
 
+message FileSpan {
+    optional int32 beg = 1;
+    optional int32 end = 2;
+}
+
+message ProjectSpan {
+    optional string file = 1;
+    optional FileSpan span = 2;
+}
+
+message Error {
+    optional string msg = 1;
+    optional ProjectSpan span = 2;
+}
+
+message File {
+    optional string name = 1;
+    optional string content = 2;
+}
+
+enum NodeType {
+    NodeRoot = 1;
+    NodeFn = 2;
+    NodeStmt = 3;
+}
+
+message NodeMarker {
+    optional int32 pos = 1;
+    optional bool open = 2;
+    optional NodeType node_type = 3;
+}
+
+message LazyAst {
+    repeated NodeMarker markers = 5;
+}
+
 message Request {
     message Ping {
+    }
+
+    message Analyze {
+        optional File file = 1;
     }
 
     // for debugging
@@ -12,6 +52,7 @@ message Request {
     }
 
     optional Ping ping = 1;
+    optional Analyze analyze = 2;
     optional Unknown unknown_command = 999;
 }
 
@@ -19,5 +60,11 @@ message Response {
     message Ping {
     }
 
+    message Analyze {
+        optional LazyAst ast = 1;
+        repeated Error errors = 5;
+    }
+
     optional Ping ping = 1;
+    optional Analyze analyze = 2;
 }

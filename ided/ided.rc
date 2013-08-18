@@ -1,21 +1,225 @@
+#[link(name="rustc", vers="0.8-pre")]
+extern mod rustc;
+#[link(name="syntax", vers="0.8-pre")]
+extern mod syntax;
+extern mod extra;
+
 extern mod protobuf;
 
 use std::io;
+use std::os;
+use std::task;
 use ided_proto::*;
 use protobuf::MessageUtil;
 
+use rustc::*;
+use rustc::driver::driver::*;
+use rustc::middle::ty;
+use /*rustc::*/ syntax::diagnostic;
+use /*rustc::*/ syntax::codemap;
+use /*rustc::*/ syntax::visit;
+use /*rustc::*/ syntax::visit::*;
+use /*rustc::*/ syntax::ast::*;
+use /*rustc::*/ syntax::codemap::*;
+use extra::getopts;
+
 mod ided_proto;
 
-fn main() {
-    let mut coded_input = protobuf::CodedInputStream::new(io::stdin());
-    loop {
-        let req = protobuf::parse_length_delimited_from::<Request>(&mut coded_input);
+fn span_to_file_span(span: span, code_map: &CodeMap) -> FileSpan {
+    fn char_pos_value(cp: CharPos) -> i32 {
+        let CharPos(r) = cp;
+        r as i32
+    }
+
+    FileSpan {
+        beg: Some(char_pos_value(code_map.bytepos_to_local_charpos(span.lo))),
+        end: Some(char_pos_value(code_map.bytepos_to_local_charpos(span.hi))),
+    }
+}
+
+fn span_to_project_span(span: span, code_map: &CodeMap) -> ProjectSpan {
+    let file = code_map.span_to_filename(span);
+    ProjectSpan {
+        file: Some(file.to_owned()),
+        span: Some(span_to_file_span(span, code_map)),
+    }
+}
+
+
+struct BuildAstVisitor<'self> {
+    code_map: &'self CodeMap,
+    ast: LazyAst,
+}
+
+impl<'self> BuildAstVisitor<'self> {
+    fn marker(&mut self, open: bool, span: span, node_type: NodeType) {
+        let mut marker = NodeMarker::new();
+        marker.set_open(open);
+        marker.set_node_type(node_type);
+        let CharPos(pos) = self.code_map.bytepos_to_local_charpos(match open {
+            true  => span.lo,
+            false => span.hi,
+        });
+        marker.set_pos(pos as i32);
+        self.ast.markers.push(marker);
+    }
+
+    fn open(&mut self, span: span, node_type: NodeType) {
+        self.marker(true, span, node_type);
+    }
+
+    fn close(&mut self, span: span, node_type: NodeType) {
+        self.marker(false, span, node_type);
+    }
+
+    fn span(&mut self, span: span, node_type: NodeType, cb: &fn(&mut BuildAstVisitor)) {
+        let ide_span = span_to_file_span(span, self.code_map);
+        self.open(span, node_type);
+        cb(self);
+        self.close(span, node_type);
+    }
+}
+
+impl<'self> visit::Visitor<()> for BuildAstVisitor<'self> {
+    fn visit_mod(&mut self, m: &_mod, s: span, n: NodeId, e: ()) {
+        do self.span(s, NodeRoot) |v| {
+            walk_mod(v, m, e)
+        }
+    }
+
+    fn visit_fn(&mut self, fk:&fn_kind, fd:&fn_decl, b:&Block, s:span, n:NodeId, e:()) {
+        do self.span(s, NodeFn) |v| {
+            walk_fn(v, fk, fd, b, s, n , e);
+        };
+    }
+
+    fn visit_stmt(&mut self, s:@stmt, e:()) {
+        do self.span(s.span, NodeStmt) |v| {
+            walk_stmt(v, s, e);
+        }
+    }
+}
+
+
+struct IdeSession {
+    coded_input: protobuf::CodedInputStream,
+    output: @Writer,
+    rust_home: ~str,
+}
+
+impl IdeSession {
+    fn new() -> IdeSession {
+        IdeSession {
+            coded_input: protobuf::CodedInputStream::new(io::stdin()),
+            output: io::stdout(),
+            rust_home: match os::getenv("RUST_HOME") {
+                Some(home) => home,
+                None => fail!("RUST_HOME env variable must be set"),
+            }
+        }
+    }
+
+    fn analyze(&self, req: &Request_Analyze) -> Response_Analyze {
+        use std::comm::*;
+
+        let (p, ch) = stream();
+        let ch = SharedChan::new(ch);
+        let ch_capture = ch.clone();
+        let mut task_builder = task::task();
+        task_builder.supervised();
+
+        let rust_home = self.rust_home.clone();
+        let req = req.clone();
+
+        match do task_builder.try {
+            let ch = ch_capture.clone();
+            let ch_capture = ch.clone();
+
+            let errors: @mut ~[Error] = @mut ~[];
+            let demitter: @fn(Option<(@codemap::CodeMap, codemap::span)>,
+                              &str,
+                              diagnostic::level) =
+                              |cmsp, msg, lvl| {
+                let mut error = Error::new();
+                error.set_msg(msg.to_owned());
+                match cmsp {
+                    Some((code_map, span)) => error.set_span(span_to_project_span(span, code_map)),
+                    None => {}
+                };
+                //(*errors).push(error);
+                ch_capture.send(error);
+            };
+
+            let matches = &getopts::groups::getopts(
+                [
+                    ~"me",
+                    ~"-L",
+                    rust_home + "/lib",
+                ], optgroups()).unwrap();
+            let options = build_session_options(@"aaa", matches, demitter);
+            let mut session = build_session(options, demitter);
+            let input = str_input(req.file.get_ref().content.get_ref().to_managed());
+            let cfg = build_configuration(session);
+            let crate = phase_1_parse_input(session, cfg.clone(), &input);
+            let expanded_crate = phase_2_configure_and_expand(session, cfg.clone(), crate);
+            let analysis = phase_3_run_analysis_passes(session, expanded_crate);
+            let node_types = analysis.ty_cx.node_types;
+            let ast_map = analysis.ty_cx.items;
+
+            let tmp = LazyAst::new();
+            let mut build_ast_visitor = BuildAstVisitor {
+                code_map: session.codemap,
+                ast: tmp,
+            };
+            visit::walk_crate(&mut build_ast_visitor, crate, ());
+
+            let mut r = Response_Analyze::new();
+            r.set_errors(errors.to_owned());
+            r.set_ast(build_ast_visitor.ast);
+            r
+        } {
+            Ok(r) => r,
+            Err(_) => {
+                let mut r = Response_Analyze::new();
+                while p.peek() {
+                    r.add_errors(p.recv());
+                }
+                r
+            }
+        }
+    }
+
+    fn iteration(&mut self) {
+        let req = protobuf::parse_length_delimited_from::<Request>(&mut self.coded_input);
+        let mut resp = Response::new();
         if req.has_ping() {
-            let mut resp = Response::new();
             resp.mut_ping();
-            resp.write_length_delimited_to_writer(io::stdout());
+        } else if req.has_analyze() {
+            resp.set_analyze(self.analyze(req.get_analyze()));
         } else {
             fail!("unknown request: %?", req);
         }
+        resp.write_length_delimited_to_writer(self.output);
     }
+
+    fn run(&mut self) {
+        loop {
+            self.iteration();
+        }
+    }
+}
+
+fn main() {
+    let mut session = IdeSession::new();
+    match os::args() {
+        [_] => session.run(),
+        [_, ~"debug", ~"analyze", program] => {
+            let mut req = Request_Analyze::new();
+            req.mut_file().set_name(~"foo.rs");
+            req.mut_file().set_content(program);
+            let resp = session.analyze(&req);
+            println(fmt!("%?", resp));
+        },
+        _ => fail!("unknown args"),
+    };
 }

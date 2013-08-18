@@ -1,13 +1,11 @@
 package com.github.stepancheg.rustide.client;
 
 import com.github.stepancheg.rustide.client.proto.IdedProtos;
-import com.google.protobuf.CodedInputStream;
+import com.github.stepancheg.rustide.client.util.ProtobufUnion;
+import com.google.protobuf.Message;
 import org.jetbrains.annotations.Nullable;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.nio.charset.Charset;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -92,7 +90,11 @@ public class IdedClient {
             try {
                 String line = reader.readLine();
                 if (line != null) {
-                    makeError(new RuntimeException("got error from ided: " + line));
+                    // hack: task are executed in try, but inside try they write to stderr
+                    // need a way to disable printing
+                    if (!line.matches(".*task.*failed at.*libsyntax/diagnostic.rs:.*")) {
+                        makeError(new RuntimeException("got error from ided: " + line));
+                    }
                 }
             } catch (Throwable e) {
                 makeError(e);
@@ -103,9 +105,10 @@ public class IdedClient {
     public IdedClient() {
         boolean ok = false;
         try {
-            ProcessBuilder processBuilder = new ProcessBuilder();
-            processBuilder.command("../ided/ided");
-            process = processBuilder.start();
+            ProcessBuilder builder = new ProcessBuilder();
+            builder.environment().put("RUST_HOME", new File("../rust/x86_64-apple-darwin/stage2").getAbsolutePath());
+            builder.command("../ided/ided");
+            process = builder.start();
 
             stdoutReader = new Thread(new StdoutReader(process.getInputStream()));
             stderrReader = new Thread(new StderrReader(process.getErrorStream()));
@@ -122,8 +125,8 @@ public class IdedClient {
             }
         }
     }
-    
-    private IdedProtos.Response request(IdedProtos.Request request) {
+
+    private IdedProtos.Response processRequest(IdedProtos.Request request) {
         try {
             request.writeDelimitedTo(process.getOutputStream());
             process.getOutputStream().flush();
@@ -154,20 +157,26 @@ public class IdedClient {
         }
     }
 
+    private <T extends Message> T request(IdedProtos.Request request, Class<T> responseType) {
+        return ProtobufUnion.unionMember(processRequest(request), responseType);
+    }
+
     public IdedProtos.Response.Ping ping() {
         IdedProtos.Request.Builder builder = IdedProtos.Request.newBuilder();
         builder.getPingBuilder();
-        IdedProtos.Response response = request(builder.build());
-        if (!response.hasPing()) {
-            throw new IllegalStateException("must have ping");
-        }
-        return response.getPing();
+        return request(builder.build(), IdedProtos.Response.Ping.class);
     }
 
     public void unknownCommand() {
         IdedProtos.Request.Builder builder = IdedProtos.Request.newBuilder();
         builder.getUnknownCommand();
-        request(builder.build());
+        processRequest(builder.build());
+    }
+
+    public IdedProtos.Response.Analyze analyze(IdedProtos.Request.Analyze analyze) {
+        IdedProtos.Request.Builder builder = IdedProtos.Request.newBuilder();
+        builder.setAnalyze(analyze);
+        return request(builder.build(), IdedProtos.Response.Analyze.class);
     }
 
     public void close() {

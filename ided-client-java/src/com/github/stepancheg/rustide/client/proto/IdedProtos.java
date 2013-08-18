@@ -8,6 +8,3768 @@ public final class IdedProtos {
   public static void registerAllExtensions(
       com.google.protobuf.ExtensionRegistry registry) {
   }
+  /**
+   * Protobuf enum {@code ided.NodeType}
+   */
+  public enum NodeType
+      implements com.google.protobuf.ProtocolMessageEnum {
+    /**
+     * <code>NodeRoot = 1;</code>
+     */
+    NodeRoot(0, 1),
+    /**
+     * <code>NodeFn = 2;</code>
+     */
+    NodeFn(1, 2),
+    /**
+     * <code>NodeStmt = 3;</code>
+     */
+    NodeStmt(2, 3),
+    ;
+
+    /**
+     * <code>NodeRoot = 1;</code>
+     */
+    public static final int NodeRoot_VALUE = 1;
+    /**
+     * <code>NodeFn = 2;</code>
+     */
+    public static final int NodeFn_VALUE = 2;
+    /**
+     * <code>NodeStmt = 3;</code>
+     */
+    public static final int NodeStmt_VALUE = 3;
+
+
+    public final int getNumber() { return value; }
+
+    public static NodeType valueOf(int value) {
+      switch (value) {
+        case 1: return NodeRoot;
+        case 2: return NodeFn;
+        case 3: return NodeStmt;
+        default: return null;
+      }
+    }
+
+    public static com.google.protobuf.Internal.EnumLiteMap<NodeType>
+        internalGetValueMap() {
+      return internalValueMap;
+    }
+    private static com.google.protobuf.Internal.EnumLiteMap<NodeType>
+        internalValueMap =
+          new com.google.protobuf.Internal.EnumLiteMap<NodeType>() {
+            public NodeType findValueByNumber(int number) {
+              return NodeType.valueOf(number);
+            }
+          };
+
+    public final com.google.protobuf.Descriptors.EnumValueDescriptor
+        getValueDescriptor() {
+      return getDescriptor().getValues().get(index);
+    }
+    public final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+    public static final com.google.protobuf.Descriptors.EnumDescriptor
+        getDescriptor() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.getDescriptor().getEnumTypes().get(0);
+    }
+
+    private static final NodeType[] VALUES = values();
+
+    public static NodeType valueOf(
+        com.google.protobuf.Descriptors.EnumValueDescriptor desc) {
+      if (desc.getType() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "EnumValueDescriptor is not for this type.");
+      }
+      return VALUES[desc.getIndex()];
+    }
+
+    private final int index;
+    private final int value;
+
+    private NodeType(int index, int value) {
+      this.index = index;
+      this.value = value;
+    }
+
+    // @@protoc_insertion_point(enum_scope:ided.NodeType)
+  }
+
+  public interface FileSpanOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional int32 beg = 1;
+    /**
+     * <code>optional int32 beg = 1;</code>
+     */
+    boolean hasBeg();
+    /**
+     * <code>optional int32 beg = 1;</code>
+     */
+    int getBeg();
+
+    // optional int32 end = 2;
+    /**
+     * <code>optional int32 end = 2;</code>
+     */
+    boolean hasEnd();
+    /**
+     * <code>optional int32 end = 2;</code>
+     */
+    int getEnd();
+  }
+  /**
+   * Protobuf type {@code ided.FileSpan}
+   */
+  public static final class FileSpan extends
+      com.google.protobuf.GeneratedMessage
+      implements FileSpanOrBuilder {
+    // Use FileSpan.newBuilder() to construct.
+    private FileSpan(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private FileSpan(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final FileSpan defaultInstance;
+    public static FileSpan getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public FileSpan getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private FileSpan(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              beg_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              end_ = input.readInt32();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_FileSpan_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_FileSpan_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.class, com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<FileSpan> PARSER =
+        new com.google.protobuf.AbstractParser<FileSpan>() {
+      public FileSpan parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new FileSpan(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<FileSpan> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional int32 beg = 1;
+    public static final int BEG_FIELD_NUMBER = 1;
+    private int beg_;
+    /**
+     * <code>optional int32 beg = 1;</code>
+     */
+    public boolean hasBeg() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int32 beg = 1;</code>
+     */
+    public int getBeg() {
+      return beg_;
+    }
+
+    // optional int32 end = 2;
+    public static final int END_FIELD_NUMBER = 2;
+    private int end_;
+    /**
+     * <code>optional int32 end = 2;</code>
+     */
+    public boolean hasEnd() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional int32 end = 2;</code>
+     */
+    public int getEnd() {
+      return end_;
+    }
+
+    private void initFields() {
+      beg_ = 0;
+      end_ = 0;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, beg_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeInt32(2, end_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, beg_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(2, end_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ided.FileSpan}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpanOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_FileSpan_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_FileSpan_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.class, com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.Builder.class);
+      }
+
+      // Construct using com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        beg_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        end_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_FileSpan_descriptor;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan getDefaultInstanceForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.getDefaultInstance();
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan build() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan buildPartial() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan result = new com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.beg_ = beg_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.end_ = end_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan) {
+          return mergeFrom((com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan other) {
+        if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.getDefaultInstance()) return this;
+        if (other.hasBeg()) {
+          setBeg(other.getBeg());
+        }
+        if (other.hasEnd()) {
+          setEnd(other.getEnd());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional int32 beg = 1;
+      private int beg_ ;
+      /**
+       * <code>optional int32 beg = 1;</code>
+       */
+      public boolean hasBeg() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 beg = 1;</code>
+       */
+      public int getBeg() {
+        return beg_;
+      }
+      /**
+       * <code>optional int32 beg = 1;</code>
+       */
+      public Builder setBeg(int value) {
+        bitField0_ |= 0x00000001;
+        beg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 beg = 1;</code>
+       */
+      public Builder clearBeg() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        beg_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional int32 end = 2;
+      private int end_ ;
+      /**
+       * <code>optional int32 end = 2;</code>
+       */
+      public boolean hasEnd() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 end = 2;</code>
+       */
+      public int getEnd() {
+        return end_;
+      }
+      /**
+       * <code>optional int32 end = 2;</code>
+       */
+      public Builder setEnd(int value) {
+        bitField0_ |= 0x00000002;
+        end_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 end = 2;</code>
+       */
+      public Builder clearEnd() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        end_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ided.FileSpan)
+    }
+
+    static {
+      defaultInstance = new FileSpan(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:ided.FileSpan)
+  }
+
+  public interface ProjectSpanOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string file = 1;
+    /**
+     * <code>optional string file = 1;</code>
+     */
+    boolean hasFile();
+    /**
+     * <code>optional string file = 1;</code>
+     */
+    java.lang.String getFile();
+    /**
+     * <code>optional string file = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getFileBytes();
+
+    // optional .ided.FileSpan span = 2;
+    /**
+     * <code>optional .ided.FileSpan span = 2;</code>
+     */
+    boolean hasSpan();
+    /**
+     * <code>optional .ided.FileSpan span = 2;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan getSpan();
+    /**
+     * <code>optional .ided.FileSpan span = 2;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpanOrBuilder getSpanOrBuilder();
+  }
+  /**
+   * Protobuf type {@code ided.ProjectSpan}
+   */
+  public static final class ProjectSpan extends
+      com.google.protobuf.GeneratedMessage
+      implements ProjectSpanOrBuilder {
+    // Use ProjectSpan.newBuilder() to construct.
+    private ProjectSpan(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private ProjectSpan(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final ProjectSpan defaultInstance;
+    public static ProjectSpan getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public ProjectSpan getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private ProjectSpan(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              file_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = span_.toBuilder();
+              }
+              span_ = input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(span_);
+                span_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_ProjectSpan_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_ProjectSpan_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.class, com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<ProjectSpan> PARSER =
+        new com.google.protobuf.AbstractParser<ProjectSpan>() {
+      public ProjectSpan parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new ProjectSpan(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<ProjectSpan> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string file = 1;
+    public static final int FILE_FIELD_NUMBER = 1;
+    private java.lang.Object file_;
+    /**
+     * <code>optional string file = 1;</code>
+     */
+    public boolean hasFile() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string file = 1;</code>
+     */
+    public java.lang.String getFile() {
+      java.lang.Object ref = file_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          file_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string file = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getFileBytes() {
+      java.lang.Object ref = file_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        file_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional .ided.FileSpan span = 2;
+    public static final int SPAN_FIELD_NUMBER = 2;
+    private com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan span_;
+    /**
+     * <code>optional .ided.FileSpan span = 2;</code>
+     */
+    public boolean hasSpan() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .ided.FileSpan span = 2;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan getSpan() {
+      return span_;
+    }
+    /**
+     * <code>optional .ided.FileSpan span = 2;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpanOrBuilder getSpanOrBuilder() {
+      return span_;
+    }
+
+    private void initFields() {
+      file_ = "";
+      span_ = com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getFileBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, span_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getFileBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, span_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ided.ProjectSpan}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpanOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_ProjectSpan_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_ProjectSpan_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.class, com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.Builder.class);
+      }
+
+      // Construct using com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getSpanFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        file_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (spanBuilder_ == null) {
+          span_ = com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.getDefaultInstance();
+        } else {
+          spanBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_ProjectSpan_descriptor;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan getDefaultInstanceForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.getDefaultInstance();
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan build() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan buildPartial() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan result = new com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.file_ = file_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (spanBuilder_ == null) {
+          result.span_ = span_;
+        } else {
+          result.span_ = spanBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan) {
+          return mergeFrom((com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan other) {
+        if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.getDefaultInstance()) return this;
+        if (other.hasFile()) {
+          bitField0_ |= 0x00000001;
+          file_ = other.file_;
+          onChanged();
+        }
+        if (other.hasSpan()) {
+          mergeSpan(other.getSpan());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string file = 1;
+      private java.lang.Object file_ = "";
+      /**
+       * <code>optional string file = 1;</code>
+       */
+      public boolean hasFile() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string file = 1;</code>
+       */
+      public java.lang.String getFile() {
+        java.lang.Object ref = file_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          file_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string file = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getFileBytes() {
+        java.lang.Object ref = file_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          file_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string file = 1;</code>
+       */
+      public Builder setFile(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        file_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string file = 1;</code>
+       */
+      public Builder clearFile() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        file_ = getDefaultInstance().getFile();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string file = 1;</code>
+       */
+      public Builder setFileBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        file_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional .ided.FileSpan span = 2;
+      private com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan span_ = com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan, com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpanOrBuilder> spanBuilder_;
+      /**
+       * <code>optional .ided.FileSpan span = 2;</code>
+       */
+      public boolean hasSpan() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .ided.FileSpan span = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan getSpan() {
+        if (spanBuilder_ == null) {
+          return span_;
+        } else {
+          return spanBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .ided.FileSpan span = 2;</code>
+       */
+      public Builder setSpan(com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan value) {
+        if (spanBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          span_ = value;
+          onChanged();
+        } else {
+          spanBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.FileSpan span = 2;</code>
+       */
+      public Builder setSpan(
+          com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.Builder builderForValue) {
+        if (spanBuilder_ == null) {
+          span_ = builderForValue.build();
+          onChanged();
+        } else {
+          spanBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.FileSpan span = 2;</code>
+       */
+      public Builder mergeSpan(com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan value) {
+        if (spanBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              span_ != com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.getDefaultInstance()) {
+            span_ =
+              com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.newBuilder(span_).mergeFrom(value).buildPartial();
+          } else {
+            span_ = value;
+          }
+          onChanged();
+        } else {
+          spanBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.FileSpan span = 2;</code>
+       */
+      public Builder clearSpan() {
+        if (spanBuilder_ == null) {
+          span_ = com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.getDefaultInstance();
+          onChanged();
+        } else {
+          spanBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .ided.FileSpan span = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.Builder getSpanBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getSpanFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .ided.FileSpan span = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpanOrBuilder getSpanOrBuilder() {
+        if (spanBuilder_ != null) {
+          return spanBuilder_.getMessageOrBuilder();
+        } else {
+          return span_;
+        }
+      }
+      /**
+       * <code>optional .ided.FileSpan span = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan, com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpanOrBuilder> 
+          getSpanFieldBuilder() {
+        if (spanBuilder_ == null) {
+          spanBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan, com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpan.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.FileSpanOrBuilder>(
+                  span_,
+                  getParentForChildren(),
+                  isClean());
+          span_ = null;
+        }
+        return spanBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ided.ProjectSpan)
+    }
+
+    static {
+      defaultInstance = new ProjectSpan(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:ided.ProjectSpan)
+  }
+
+  public interface ErrorOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string msg = 1;
+    /**
+     * <code>optional string msg = 1;</code>
+     */
+    boolean hasMsg();
+    /**
+     * <code>optional string msg = 1;</code>
+     */
+    java.lang.String getMsg();
+    /**
+     * <code>optional string msg = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getMsgBytes();
+
+    // optional .ided.ProjectSpan span = 2;
+    /**
+     * <code>optional .ided.ProjectSpan span = 2;</code>
+     */
+    boolean hasSpan();
+    /**
+     * <code>optional .ided.ProjectSpan span = 2;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan getSpan();
+    /**
+     * <code>optional .ided.ProjectSpan span = 2;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpanOrBuilder getSpanOrBuilder();
+  }
+  /**
+   * Protobuf type {@code ided.Error}
+   */
+  public static final class Error extends
+      com.google.protobuf.GeneratedMessage
+      implements ErrorOrBuilder {
+    // Use Error.newBuilder() to construct.
+    private Error(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Error(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Error defaultInstance;
+    public static Error getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Error getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Error(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              msg_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = span_.toBuilder();
+              }
+              span_ = input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(span_);
+                span_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Error_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Error_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.stepancheg.rustide.client.proto.IdedProtos.Error.class, com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Error> PARSER =
+        new com.google.protobuf.AbstractParser<Error>() {
+      public Error parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Error(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Error> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string msg = 1;
+    public static final int MSG_FIELD_NUMBER = 1;
+    private java.lang.Object msg_;
+    /**
+     * <code>optional string msg = 1;</code>
+     */
+    public boolean hasMsg() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string msg = 1;</code>
+     */
+    public java.lang.String getMsg() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          msg_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string msg = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMsgBytes() {
+      java.lang.Object ref = msg_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        msg_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional .ided.ProjectSpan span = 2;
+    public static final int SPAN_FIELD_NUMBER = 2;
+    private com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan span_;
+    /**
+     * <code>optional .ided.ProjectSpan span = 2;</code>
+     */
+    public boolean hasSpan() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .ided.ProjectSpan span = 2;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan getSpan() {
+      return span_;
+    }
+    /**
+     * <code>optional .ided.ProjectSpan span = 2;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpanOrBuilder getSpanOrBuilder() {
+      return span_;
+    }
+
+    private void initFields() {
+      msg_ = "";
+      span_ = com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getMsgBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, span_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getMsgBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, span_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.Error parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.Error parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.Error parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.Error parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.Error parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.Error parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.Error parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.Error parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.Error parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.Error parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.github.stepancheg.rustide.client.proto.IdedProtos.Error prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ided.Error}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.github.stepancheg.rustide.client.proto.IdedProtos.ErrorOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Error_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Error_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.stepancheg.rustide.client.proto.IdedProtos.Error.class, com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder.class);
+      }
+
+      // Construct using com.github.stepancheg.rustide.client.proto.IdedProtos.Error.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getSpanFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        msg_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (spanBuilder_ == null) {
+          span_ = com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.getDefaultInstance();
+        } else {
+          spanBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Error_descriptor;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.Error getDefaultInstanceForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.Error.getDefaultInstance();
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.Error build() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.Error result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.Error buildPartial() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.Error result = new com.github.stepancheg.rustide.client.proto.IdedProtos.Error(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.msg_ = msg_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (spanBuilder_ == null) {
+          result.span_ = span_;
+        } else {
+          result.span_ = spanBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.stepancheg.rustide.client.proto.IdedProtos.Error) {
+          return mergeFrom((com.github.stepancheg.rustide.client.proto.IdedProtos.Error)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.stepancheg.rustide.client.proto.IdedProtos.Error other) {
+        if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.Error.getDefaultInstance()) return this;
+        if (other.hasMsg()) {
+          bitField0_ |= 0x00000001;
+          msg_ = other.msg_;
+          onChanged();
+        }
+        if (other.hasSpan()) {
+          mergeSpan(other.getSpan());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.Error parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.github.stepancheg.rustide.client.proto.IdedProtos.Error) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string msg = 1;
+      private java.lang.Object msg_ = "";
+      /**
+       * <code>optional string msg = 1;</code>
+       */
+      public boolean hasMsg() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string msg = 1;</code>
+       */
+      public java.lang.String getMsg() {
+        java.lang.Object ref = msg_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          msg_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string msg = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMsgBytes() {
+        java.lang.Object ref = msg_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          msg_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string msg = 1;</code>
+       */
+      public Builder setMsg(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string msg = 1;</code>
+       */
+      public Builder clearMsg() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        msg_ = getDefaultInstance().getMsg();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string msg = 1;</code>
+       */
+      public Builder setMsgBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        msg_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional .ided.ProjectSpan span = 2;
+      private com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan span_ = com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan, com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpanOrBuilder> spanBuilder_;
+      /**
+       * <code>optional .ided.ProjectSpan span = 2;</code>
+       */
+      public boolean hasSpan() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .ided.ProjectSpan span = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan getSpan() {
+        if (spanBuilder_ == null) {
+          return span_;
+        } else {
+          return spanBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .ided.ProjectSpan span = 2;</code>
+       */
+      public Builder setSpan(com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan value) {
+        if (spanBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          span_ = value;
+          onChanged();
+        } else {
+          spanBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.ProjectSpan span = 2;</code>
+       */
+      public Builder setSpan(
+          com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.Builder builderForValue) {
+        if (spanBuilder_ == null) {
+          span_ = builderForValue.build();
+          onChanged();
+        } else {
+          spanBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.ProjectSpan span = 2;</code>
+       */
+      public Builder mergeSpan(com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan value) {
+        if (spanBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              span_ != com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.getDefaultInstance()) {
+            span_ =
+              com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.newBuilder(span_).mergeFrom(value).buildPartial();
+          } else {
+            span_ = value;
+          }
+          onChanged();
+        } else {
+          spanBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.ProjectSpan span = 2;</code>
+       */
+      public Builder clearSpan() {
+        if (spanBuilder_ == null) {
+          span_ = com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.getDefaultInstance();
+          onChanged();
+        } else {
+          spanBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .ided.ProjectSpan span = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.Builder getSpanBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getSpanFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .ided.ProjectSpan span = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpanOrBuilder getSpanOrBuilder() {
+        if (spanBuilder_ != null) {
+          return spanBuilder_.getMessageOrBuilder();
+        } else {
+          return span_;
+        }
+      }
+      /**
+       * <code>optional .ided.ProjectSpan span = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan, com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpanOrBuilder> 
+          getSpanFieldBuilder() {
+        if (spanBuilder_ == null) {
+          spanBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan, com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpan.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.ProjectSpanOrBuilder>(
+                  span_,
+                  getParentForChildren(),
+                  isClean());
+          span_ = null;
+        }
+        return spanBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ided.Error)
+    }
+
+    static {
+      defaultInstance = new Error(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:ided.Error)
+  }
+
+  public interface FileOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional string name = 1;
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    boolean hasName();
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    java.lang.String getName();
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getNameBytes();
+
+    // optional string content = 2;
+    /**
+     * <code>optional string content = 2;</code>
+     */
+    boolean hasContent();
+    /**
+     * <code>optional string content = 2;</code>
+     */
+    java.lang.String getContent();
+    /**
+     * <code>optional string content = 2;</code>
+     */
+    com.google.protobuf.ByteString
+        getContentBytes();
+  }
+  /**
+   * Protobuf type {@code ided.File}
+   */
+  public static final class File extends
+      com.google.protobuf.GeneratedMessage
+      implements FileOrBuilder {
+    // Use File.newBuilder() to construct.
+    private File(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private File(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final File defaultInstance;
+    public static File getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public File getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private File(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              name_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              content_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_File_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_File_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.stepancheg.rustide.client.proto.IdedProtos.File.class, com.github.stepancheg.rustide.client.proto.IdedProtos.File.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<File> PARSER =
+        new com.google.protobuf.AbstractParser<File>() {
+      public File parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new File(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<File> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional string name = 1;
+    public static final int NAME_FIELD_NUMBER = 1;
+    private java.lang.Object name_;
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    public boolean hasName() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    public java.lang.String getName() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          name_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string name = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getNameBytes() {
+      java.lang.Object ref = name_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        name_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // optional string content = 2;
+    public static final int CONTENT_FIELD_NUMBER = 2;
+    private java.lang.Object content_;
+    /**
+     * <code>optional string content = 2;</code>
+     */
+    public boolean hasContent() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional string content = 2;</code>
+     */
+    public java.lang.String getContent() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          content_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>optional string content = 2;</code>
+     */
+    public com.google.protobuf.ByteString
+        getContentBytes() {
+      java.lang.Object ref = content_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        content_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      name_ = "";
+      content_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getContentBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getNameBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getContentBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.File parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.File parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.File parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.File parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.File parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.File parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.File parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.File parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.File parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.File parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.github.stepancheg.rustide.client.proto.IdedProtos.File prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ided.File}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.github.stepancheg.rustide.client.proto.IdedProtos.FileOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_File_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_File_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.stepancheg.rustide.client.proto.IdedProtos.File.class, com.github.stepancheg.rustide.client.proto.IdedProtos.File.Builder.class);
+      }
+
+      // Construct using com.github.stepancheg.rustide.client.proto.IdedProtos.File.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        name_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        content_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_File_descriptor;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.File getDefaultInstanceForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.File.getDefaultInstance();
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.File build() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.File result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.File buildPartial() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.File result = new com.github.stepancheg.rustide.client.proto.IdedProtos.File(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.name_ = name_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.content_ = content_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.stepancheg.rustide.client.proto.IdedProtos.File) {
+          return mergeFrom((com.github.stepancheg.rustide.client.proto.IdedProtos.File)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.stepancheg.rustide.client.proto.IdedProtos.File other) {
+        if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.File.getDefaultInstance()) return this;
+        if (other.hasName()) {
+          bitField0_ |= 0x00000001;
+          name_ = other.name_;
+          onChanged();
+        }
+        if (other.hasContent()) {
+          bitField0_ |= 0x00000002;
+          content_ = other.content_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.File parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.github.stepancheg.rustide.client.proto.IdedProtos.File) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional string name = 1;
+      private java.lang.Object name_ = "";
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public boolean hasName() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public java.lang.String getName() {
+        java.lang.Object ref = name_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          name_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getNameBytes() {
+        java.lang.Object ref = name_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          name_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder setName(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder clearName() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        name_ = getDefaultInstance().getName();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string name = 1;</code>
+       */
+      public Builder setNameBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        name_ = value;
+        onChanged();
+        return this;
+      }
+
+      // optional string content = 2;
+      private java.lang.Object content_ = "";
+      /**
+       * <code>optional string content = 2;</code>
+       */
+      public boolean hasContent() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional string content = 2;</code>
+       */
+      public java.lang.String getContent() {
+        java.lang.Object ref = content_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          content_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>optional string content = 2;</code>
+       */
+      public com.google.protobuf.ByteString
+          getContentBytes() {
+        java.lang.Object ref = content_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          content_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>optional string content = 2;</code>
+       */
+      public Builder setContent(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        content_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string content = 2;</code>
+       */
+      public Builder clearContent() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        content_ = getDefaultInstance().getContent();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional string content = 2;</code>
+       */
+      public Builder setContentBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        content_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ided.File)
+    }
+
+    static {
+      defaultInstance = new File(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:ided.File)
+  }
+
+  public interface NodeMarkerOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // optional int32 pos = 1;
+    /**
+     * <code>optional int32 pos = 1;</code>
+     */
+    boolean hasPos();
+    /**
+     * <code>optional int32 pos = 1;</code>
+     */
+    int getPos();
+
+    // optional bool open = 2;
+    /**
+     * <code>optional bool open = 2;</code>
+     */
+    boolean hasOpen();
+    /**
+     * <code>optional bool open = 2;</code>
+     */
+    boolean getOpen();
+
+    // optional .ided.NodeType node_type = 3;
+    /**
+     * <code>optional .ided.NodeType node_type = 3;</code>
+     */
+    boolean hasNodeType();
+    /**
+     * <code>optional .ided.NodeType node_type = 3;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType getNodeType();
+  }
+  /**
+   * Protobuf type {@code ided.NodeMarker}
+   */
+  public static final class NodeMarker extends
+      com.google.protobuf.GeneratedMessage
+      implements NodeMarkerOrBuilder {
+    // Use NodeMarker.newBuilder() to construct.
+    private NodeMarker(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private NodeMarker(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final NodeMarker defaultInstance;
+    public static NodeMarker getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public NodeMarker getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private NodeMarker(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              pos_ = input.readInt32();
+              break;
+            }
+            case 16: {
+              bitField0_ |= 0x00000002;
+              open_ = input.readBool();
+              break;
+            }
+            case 24: {
+              int rawValue = input.readEnum();
+              com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType value = com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType.valueOf(rawValue);
+              if (value == null) {
+                unknownFields.mergeVarintField(3, rawValue);
+              } else {
+                bitField0_ |= 0x00000004;
+                nodeType_ = value;
+              }
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_NodeMarker_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_NodeMarker_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.class, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<NodeMarker> PARSER =
+        new com.google.protobuf.AbstractParser<NodeMarker>() {
+      public NodeMarker parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new NodeMarker(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<NodeMarker> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // optional int32 pos = 1;
+    public static final int POS_FIELD_NUMBER = 1;
+    private int pos_;
+    /**
+     * <code>optional int32 pos = 1;</code>
+     */
+    public boolean hasPos() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>optional int32 pos = 1;</code>
+     */
+    public int getPos() {
+      return pos_;
+    }
+
+    // optional bool open = 2;
+    public static final int OPEN_FIELD_NUMBER = 2;
+    private boolean open_;
+    /**
+     * <code>optional bool open = 2;</code>
+     */
+    public boolean hasOpen() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional bool open = 2;</code>
+     */
+    public boolean getOpen() {
+      return open_;
+    }
+
+    // optional .ided.NodeType node_type = 3;
+    public static final int NODE_TYPE_FIELD_NUMBER = 3;
+    private com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType nodeType_;
+    /**
+     * <code>optional .ided.NodeType node_type = 3;</code>
+     */
+    public boolean hasNodeType() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    /**
+     * <code>optional .ided.NodeType node_type = 3;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType getNodeType() {
+      return nodeType_;
+    }
+
+    private void initFields() {
+      pos_ = 0;
+      open_ = false;
+      nodeType_ = com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType.NodeRoot;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeInt32(1, pos_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBool(2, open_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeEnum(3, nodeType_.getNumber());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(1, pos_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(2, open_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeEnumSize(3, nodeType_.getNumber());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ided.NodeMarker}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarkerOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_NodeMarker_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_NodeMarker_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.class, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder.class);
+      }
+
+      // Construct using com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        pos_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        open_ = false;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        nodeType_ = com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType.NodeRoot;
+        bitField0_ = (bitField0_ & ~0x00000004);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_NodeMarker_descriptor;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker getDefaultInstanceForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.getDefaultInstance();
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker build() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker buildPartial() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker result = new com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.pos_ = pos_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.open_ = open_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.nodeType_ = nodeType_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker) {
+          return mergeFrom((com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker other) {
+        if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.getDefaultInstance()) return this;
+        if (other.hasPos()) {
+          setPos(other.getPos());
+        }
+        if (other.hasOpen()) {
+          setOpen(other.getOpen());
+        }
+        if (other.hasNodeType()) {
+          setNodeType(other.getNodeType());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // optional int32 pos = 1;
+      private int pos_ ;
+      /**
+       * <code>optional int32 pos = 1;</code>
+       */
+      public boolean hasPos() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 pos = 1;</code>
+       */
+      public int getPos() {
+        return pos_;
+      }
+      /**
+       * <code>optional int32 pos = 1;</code>
+       */
+      public Builder setPos(int value) {
+        bitField0_ |= 0x00000001;
+        pos_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 pos = 1;</code>
+       */
+      public Builder clearPos() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        pos_ = 0;
+        onChanged();
+        return this;
+      }
+
+      // optional bool open = 2;
+      private boolean open_ ;
+      /**
+       * <code>optional bool open = 2;</code>
+       */
+      public boolean hasOpen() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional bool open = 2;</code>
+       */
+      public boolean getOpen() {
+        return open_;
+      }
+      /**
+       * <code>optional bool open = 2;</code>
+       */
+      public Builder setOpen(boolean value) {
+        bitField0_ |= 0x00000002;
+        open_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional bool open = 2;</code>
+       */
+      public Builder clearOpen() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        open_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional .ided.NodeType node_type = 3;
+      private com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType nodeType_ = com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType.NodeRoot;
+      /**
+       * <code>optional .ided.NodeType node_type = 3;</code>
+       */
+      public boolean hasNodeType() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      /**
+       * <code>optional .ided.NodeType node_type = 3;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType getNodeType() {
+        return nodeType_;
+      }
+      /**
+       * <code>optional .ided.NodeType node_type = 3;</code>
+       */
+      public Builder setNodeType(com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType value) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        bitField0_ |= 0x00000004;
+        nodeType_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional .ided.NodeType node_type = 3;</code>
+       */
+      public Builder clearNodeType() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        nodeType_ = com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType.NodeRoot;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ided.NodeMarker)
+    }
+
+    static {
+      defaultInstance = new NodeMarker(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:ided.NodeMarker)
+  }
+
+  public interface LazyAstOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // repeated .ided.NodeMarker markers = 5;
+    /**
+     * <code>repeated .ided.NodeMarker markers = 5;</code>
+     */
+    java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker> 
+        getMarkersList();
+    /**
+     * <code>repeated .ided.NodeMarker markers = 5;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker getMarkers(int index);
+    /**
+     * <code>repeated .ided.NodeMarker markers = 5;</code>
+     */
+    int getMarkersCount();
+    /**
+     * <code>repeated .ided.NodeMarker markers = 5;</code>
+     */
+    java.util.List<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarkerOrBuilder> 
+        getMarkersOrBuilderList();
+    /**
+     * <code>repeated .ided.NodeMarker markers = 5;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarkerOrBuilder getMarkersOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code ided.LazyAst}
+   */
+  public static final class LazyAst extends
+      com.google.protobuf.GeneratedMessage
+      implements LazyAstOrBuilder {
+    // Use LazyAst.newBuilder() to construct.
+    private LazyAst(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private LazyAst(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final LazyAst defaultInstance;
+    public static LazyAst getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public LazyAst getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private LazyAst(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 42: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                markers_ = new java.util.ArrayList<com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              markers_.add(input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.PARSER, extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          markers_ = java.util.Collections.unmodifiableList(markers_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_LazyAst_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_LazyAst_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.class, com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<LazyAst> PARSER =
+        new com.google.protobuf.AbstractParser<LazyAst>() {
+      public LazyAst parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new LazyAst(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<LazyAst> getParserForType() {
+      return PARSER;
+    }
+
+    // repeated .ided.NodeMarker markers = 5;
+    public static final int MARKERS_FIELD_NUMBER = 5;
+    private java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker> markers_;
+    /**
+     * <code>repeated .ided.NodeMarker markers = 5;</code>
+     */
+    public java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker> getMarkersList() {
+      return markers_;
+    }
+    /**
+     * <code>repeated .ided.NodeMarker markers = 5;</code>
+     */
+    public java.util.List<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarkerOrBuilder> 
+        getMarkersOrBuilderList() {
+      return markers_;
+    }
+    /**
+     * <code>repeated .ided.NodeMarker markers = 5;</code>
+     */
+    public int getMarkersCount() {
+      return markers_.size();
+    }
+    /**
+     * <code>repeated .ided.NodeMarker markers = 5;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker getMarkers(int index) {
+      return markers_.get(index);
+    }
+    /**
+     * <code>repeated .ided.NodeMarker markers = 5;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarkerOrBuilder getMarkersOrBuilder(
+        int index) {
+      return markers_.get(index);
+    }
+
+    private void initFields() {
+      markers_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < markers_.size(); i++) {
+        output.writeMessage(5, markers_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < markers_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, markers_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ided.LazyAst}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAstOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_LazyAst_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_LazyAst_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.class, com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.Builder.class);
+      }
+
+      // Construct using com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getMarkersFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        if (markersBuilder_ == null) {
+          markers_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          markersBuilder_.clear();
+        }
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_LazyAst_descriptor;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst getDefaultInstanceForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.getDefaultInstance();
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst build() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst buildPartial() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst result = new com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst(this);
+        int from_bitField0_ = bitField0_;
+        if (markersBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            markers_ = java.util.Collections.unmodifiableList(markers_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.markers_ = markers_;
+        } else {
+          result.markers_ = markersBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst) {
+          return mergeFrom((com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst other) {
+        if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.getDefaultInstance()) return this;
+        if (markersBuilder_ == null) {
+          if (!other.markers_.isEmpty()) {
+            if (markers_.isEmpty()) {
+              markers_ = other.markers_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureMarkersIsMutable();
+              markers_.addAll(other.markers_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.markers_.isEmpty()) {
+            if (markersBuilder_.isEmpty()) {
+              markersBuilder_.dispose();
+              markersBuilder_ = null;
+              markers_ = other.markers_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              markersBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getMarkersFieldBuilder() : null;
+            } else {
+              markersBuilder_.addAllMessages(other.markers_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // repeated .ided.NodeMarker markers = 5;
+      private java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker> markers_ =
+        java.util.Collections.emptyList();
+      private void ensureMarkersIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          markers_ = new java.util.ArrayList<com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker>(markers_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarkerOrBuilder> markersBuilder_;
+
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker> getMarkersList() {
+        if (markersBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(markers_);
+        } else {
+          return markersBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public int getMarkersCount() {
+        if (markersBuilder_ == null) {
+          return markers_.size();
+        } else {
+          return markersBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker getMarkers(int index) {
+        if (markersBuilder_ == null) {
+          return markers_.get(index);
+        } else {
+          return markersBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public Builder setMarkers(
+          int index, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker value) {
+        if (markersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMarkersIsMutable();
+          markers_.set(index, value);
+          onChanged();
+        } else {
+          markersBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public Builder setMarkers(
+          int index, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder builderForValue) {
+        if (markersBuilder_ == null) {
+          ensureMarkersIsMutable();
+          markers_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          markersBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public Builder addMarkers(com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker value) {
+        if (markersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMarkersIsMutable();
+          markers_.add(value);
+          onChanged();
+        } else {
+          markersBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public Builder addMarkers(
+          int index, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker value) {
+        if (markersBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureMarkersIsMutable();
+          markers_.add(index, value);
+          onChanged();
+        } else {
+          markersBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public Builder addMarkers(
+          com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder builderForValue) {
+        if (markersBuilder_ == null) {
+          ensureMarkersIsMutable();
+          markers_.add(builderForValue.build());
+          onChanged();
+        } else {
+          markersBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public Builder addMarkers(
+          int index, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder builderForValue) {
+        if (markersBuilder_ == null) {
+          ensureMarkersIsMutable();
+          markers_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          markersBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public Builder addAllMarkers(
+          java.lang.Iterable<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker> values) {
+        if (markersBuilder_ == null) {
+          ensureMarkersIsMutable();
+          super.addAll(values, markers_);
+          onChanged();
+        } else {
+          markersBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public Builder clearMarkers() {
+        if (markersBuilder_ == null) {
+          markers_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          markersBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public Builder removeMarkers(int index) {
+        if (markersBuilder_ == null) {
+          ensureMarkersIsMutable();
+          markers_.remove(index);
+          onChanged();
+        } else {
+          markersBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder getMarkersBuilder(
+          int index) {
+        return getMarkersFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarkerOrBuilder getMarkersOrBuilder(
+          int index) {
+        if (markersBuilder_ == null) {
+          return markers_.get(index);  } else {
+          return markersBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public java.util.List<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarkerOrBuilder> 
+           getMarkersOrBuilderList() {
+        if (markersBuilder_ != null) {
+          return markersBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(markers_);
+        }
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder addMarkersBuilder() {
+        return getMarkersFieldBuilder().addBuilder(
+            com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder addMarkersBuilder(
+          int index) {
+        return getMarkersFieldBuilder().addBuilder(
+            index, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ided.NodeMarker markers = 5;</code>
+       */
+      public java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder> 
+           getMarkersBuilderList() {
+        return getMarkersFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarkerOrBuilder> 
+          getMarkersFieldBuilder() {
+        if (markersBuilder_ == null) {
+          markersBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarker.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.NodeMarkerOrBuilder>(
+                  markers_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          markers_ = null;
+        }
+        return markersBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ided.LazyAst)
+    }
+
+    static {
+      defaultInstance = new LazyAst(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:ided.LazyAst)
+  }
+
   public interface RequestOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
 
@@ -24,6 +3786,20 @@ public final class IdedProtos {
      * <code>optional .ided.Request.Ping ping = 1;</code>
      */
     com.github.stepancheg.rustide.client.proto.IdedProtos.Request.PingOrBuilder getPingOrBuilder();
+
+    // optional .ided.Request.Analyze analyze = 2;
+    /**
+     * <code>optional .ided.Request.Analyze analyze = 2;</code>
+     */
+    boolean hasAnalyze();
+    /**
+     * <code>optional .ided.Request.Analyze analyze = 2;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze getAnalyze();
+    /**
+     * <code>optional .ided.Request.Analyze analyze = 2;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.Request.AnalyzeOrBuilder getAnalyzeOrBuilder();
 
     // optional .ided.Request.Unknown unknown_command = 999;
     /**
@@ -103,9 +3879,22 @@ public final class IdedProtos {
               bitField0_ |= 0x00000001;
               break;
             }
+            case 18: {
+              com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = analyze_.toBuilder();
+              }
+              analyze_ = input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(analyze_);
+                analyze_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
             case 7994: {
               com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Unknown.Builder subBuilder = null;
-              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              if (((bitField0_ & 0x00000004) == 0x00000004)) {
                 subBuilder = unknownCommand_.toBuilder();
               }
               unknownCommand_ = input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Unknown.PARSER, extensionRegistry);
@@ -113,7 +3902,7 @@ public final class IdedProtos {
                 subBuilder.mergeFrom(unknownCommand_);
                 unknownCommand_ = subBuilder.buildPartial();
               }
-              bitField0_ |= 0x00000002;
+              bitField0_ |= 0x00000004;
               break;
             }
           }
@@ -464,6 +4253,513 @@ public final class IdedProtos {
       // @@protoc_insertion_point(class_scope:ided.Request.Ping)
     }
 
+    public interface AnalyzeOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+
+      // optional .ided.File file = 1;
+      /**
+       * <code>optional .ided.File file = 1;</code>
+       */
+      boolean hasFile();
+      /**
+       * <code>optional .ided.File file = 1;</code>
+       */
+      com.github.stepancheg.rustide.client.proto.IdedProtos.File getFile();
+      /**
+       * <code>optional .ided.File file = 1;</code>
+       */
+      com.github.stepancheg.rustide.client.proto.IdedProtos.FileOrBuilder getFileOrBuilder();
+    }
+    /**
+     * Protobuf type {@code ided.Request.Analyze}
+     */
+    public static final class Analyze extends
+        com.google.protobuf.GeneratedMessage
+        implements AnalyzeOrBuilder {
+      // Use Analyze.newBuilder() to construct.
+      private Analyze(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private Analyze(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final Analyze defaultInstance;
+      public static Analyze getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public Analyze getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Analyze(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 10: {
+                com.github.stepancheg.rustide.client.proto.IdedProtos.File.Builder subBuilder = null;
+                if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                  subBuilder = file_.toBuilder();
+                }
+                file_ = input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.File.PARSER, extensionRegistry);
+                if (subBuilder != null) {
+                  subBuilder.mergeFrom(file_);
+                  file_ = subBuilder.buildPartial();
+                }
+                bitField0_ |= 0x00000001;
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Request_Analyze_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Request_Analyze_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.class, com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<Analyze> PARSER =
+          new com.google.protobuf.AbstractParser<Analyze>() {
+        public Analyze parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Analyze(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Analyze> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      // optional .ided.File file = 1;
+      public static final int FILE_FIELD_NUMBER = 1;
+      private com.github.stepancheg.rustide.client.proto.IdedProtos.File file_;
+      /**
+       * <code>optional .ided.File file = 1;</code>
+       */
+      public boolean hasFile() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional .ided.File file = 1;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.File getFile() {
+        return file_;
+      }
+      /**
+       * <code>optional .ided.File file = 1;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.FileOrBuilder getFileOrBuilder() {
+        return file_;
+      }
+
+      private void initFields() {
+        file_ = com.github.stepancheg.rustide.client.proto.IdedProtos.File.getDefaultInstance();
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeMessage(1, file_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(1, file_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code ided.Request.Analyze}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements com.github.stepancheg.rustide.client.proto.IdedProtos.Request.AnalyzeOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Request_Analyze_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Request_Analyze_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.class, com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.Builder.class);
+        }
+
+        // Construct using com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+            getFileFieldBuilder();
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          if (fileBuilder_ == null) {
+            file_ = com.github.stepancheg.rustide.client.proto.IdedProtos.File.getDefaultInstance();
+          } else {
+            fileBuilder_.clear();
+          }
+          bitField0_ = (bitField0_ & ~0x00000001);
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Request_Analyze_descriptor;
+        }
+
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze getDefaultInstanceForType() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.getDefaultInstance();
+        }
+
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze build() {
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze buildPartial() {
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze result = new com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          if (fileBuilder_ == null) {
+            result.file_ = file_;
+          } else {
+            result.file_ = fileBuilder_.build();
+          }
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze) {
+            return mergeFrom((com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze other) {
+          if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.getDefaultInstance()) return this;
+          if (other.hasFile()) {
+            mergeFile(other.getFile());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        // optional .ided.File file = 1;
+        private com.github.stepancheg.rustide.client.proto.IdedProtos.File file_ = com.github.stepancheg.rustide.client.proto.IdedProtos.File.getDefaultInstance();
+        private com.google.protobuf.SingleFieldBuilder<
+            com.github.stepancheg.rustide.client.proto.IdedProtos.File, com.github.stepancheg.rustide.client.proto.IdedProtos.File.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.FileOrBuilder> fileBuilder_;
+        /**
+         * <code>optional .ided.File file = 1;</code>
+         */
+        public boolean hasFile() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>optional .ided.File file = 1;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.File getFile() {
+          if (fileBuilder_ == null) {
+            return file_;
+          } else {
+            return fileBuilder_.getMessage();
+          }
+        }
+        /**
+         * <code>optional .ided.File file = 1;</code>
+         */
+        public Builder setFile(com.github.stepancheg.rustide.client.proto.IdedProtos.File value) {
+          if (fileBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            file_ = value;
+            onChanged();
+          } else {
+            fileBuilder_.setMessage(value);
+          }
+          bitField0_ |= 0x00000001;
+          return this;
+        }
+        /**
+         * <code>optional .ided.File file = 1;</code>
+         */
+        public Builder setFile(
+            com.github.stepancheg.rustide.client.proto.IdedProtos.File.Builder builderForValue) {
+          if (fileBuilder_ == null) {
+            file_ = builderForValue.build();
+            onChanged();
+          } else {
+            fileBuilder_.setMessage(builderForValue.build());
+          }
+          bitField0_ |= 0x00000001;
+          return this;
+        }
+        /**
+         * <code>optional .ided.File file = 1;</code>
+         */
+        public Builder mergeFile(com.github.stepancheg.rustide.client.proto.IdedProtos.File value) {
+          if (fileBuilder_ == null) {
+            if (((bitField0_ & 0x00000001) == 0x00000001) &&
+                file_ != com.github.stepancheg.rustide.client.proto.IdedProtos.File.getDefaultInstance()) {
+              file_ =
+                com.github.stepancheg.rustide.client.proto.IdedProtos.File.newBuilder(file_).mergeFrom(value).buildPartial();
+            } else {
+              file_ = value;
+            }
+            onChanged();
+          } else {
+            fileBuilder_.mergeFrom(value);
+          }
+          bitField0_ |= 0x00000001;
+          return this;
+        }
+        /**
+         * <code>optional .ided.File file = 1;</code>
+         */
+        public Builder clearFile() {
+          if (fileBuilder_ == null) {
+            file_ = com.github.stepancheg.rustide.client.proto.IdedProtos.File.getDefaultInstance();
+            onChanged();
+          } else {
+            fileBuilder_.clear();
+          }
+          bitField0_ = (bitField0_ & ~0x00000001);
+          return this;
+        }
+        /**
+         * <code>optional .ided.File file = 1;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.File.Builder getFileBuilder() {
+          bitField0_ |= 0x00000001;
+          onChanged();
+          return getFileFieldBuilder().getBuilder();
+        }
+        /**
+         * <code>optional .ided.File file = 1;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.FileOrBuilder getFileOrBuilder() {
+          if (fileBuilder_ != null) {
+            return fileBuilder_.getMessageOrBuilder();
+          } else {
+            return file_;
+          }
+        }
+        /**
+         * <code>optional .ided.File file = 1;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilder<
+            com.github.stepancheg.rustide.client.proto.IdedProtos.File, com.github.stepancheg.rustide.client.proto.IdedProtos.File.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.FileOrBuilder> 
+            getFileFieldBuilder() {
+          if (fileBuilder_ == null) {
+            fileBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+                com.github.stepancheg.rustide.client.proto.IdedProtos.File, com.github.stepancheg.rustide.client.proto.IdedProtos.File.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.FileOrBuilder>(
+                    file_,
+                    getParentForChildren(),
+                    isClean());
+            file_ = null;
+          }
+          return fileBuilder_;
+        }
+
+        // @@protoc_insertion_point(builder_scope:ided.Request.Analyze)
+      }
+
+      static {
+        defaultInstance = new Analyze(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:ided.Request.Analyze)
+    }
+
     public interface UnknownOrBuilder
         extends com.google.protobuf.MessageOrBuilder {
     }
@@ -804,6 +5100,28 @@ public final class IdedProtos {
       return ping_;
     }
 
+    // optional .ided.Request.Analyze analyze = 2;
+    public static final int ANALYZE_FIELD_NUMBER = 2;
+    private com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze analyze_;
+    /**
+     * <code>optional .ided.Request.Analyze analyze = 2;</code>
+     */
+    public boolean hasAnalyze() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .ided.Request.Analyze analyze = 2;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze getAnalyze() {
+      return analyze_;
+    }
+    /**
+     * <code>optional .ided.Request.Analyze analyze = 2;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.Request.AnalyzeOrBuilder getAnalyzeOrBuilder() {
+      return analyze_;
+    }
+
     // optional .ided.Request.Unknown unknown_command = 999;
     public static final int UNKNOWN_COMMAND_FIELD_NUMBER = 999;
     private com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Unknown unknownCommand_;
@@ -811,7 +5129,7 @@ public final class IdedProtos {
      * <code>optional .ided.Request.Unknown unknown_command = 999;</code>
      */
     public boolean hasUnknownCommand() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     /**
      * <code>optional .ided.Request.Unknown unknown_command = 999;</code>
@@ -828,6 +5146,7 @@ public final class IdedProtos {
 
     private void initFields() {
       ping_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Ping.getDefaultInstance();
+      analyze_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.getDefaultInstance();
       unknownCommand_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Unknown.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
@@ -846,6 +5165,9 @@ public final class IdedProtos {
         output.writeMessage(1, ping_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, analyze_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeMessage(999, unknownCommand_);
       }
       getUnknownFields().writeTo(output);
@@ -862,6 +5184,10 @@ public final class IdedProtos {
           .computeMessageSize(1, ping_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, analyze_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(999, unknownCommand_);
       }
@@ -974,6 +5300,7 @@ public final class IdedProtos {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getPingFieldBuilder();
+          getAnalyzeFieldBuilder();
           getUnknownCommandFieldBuilder();
         }
       }
@@ -989,12 +5316,18 @@ public final class IdedProtos {
           pingBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
+        if (analyzeBuilder_ == null) {
+          analyze_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.getDefaultInstance();
+        } else {
+          analyzeBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
         if (unknownCommandBuilder_ == null) {
           unknownCommand_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Unknown.getDefaultInstance();
         } else {
           unknownCommandBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
@@ -1034,6 +5367,14 @@ public final class IdedProtos {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
+        if (analyzeBuilder_ == null) {
+          result.analyze_ = analyze_;
+        } else {
+          result.analyze_ = analyzeBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
         if (unknownCommandBuilder_ == null) {
           result.unknownCommand_ = unknownCommand_;
         } else {
@@ -1057,6 +5398,9 @@ public final class IdedProtos {
         if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.Request.getDefaultInstance()) return this;
         if (other.hasPing()) {
           mergePing(other.getPing());
+        }
+        if (other.hasAnalyze()) {
+          mergeAnalyze(other.getAnalyze());
         }
         if (other.hasUnknownCommand()) {
           mergeUnknownCommand(other.getUnknownCommand());
@@ -1205,6 +5549,123 @@ public final class IdedProtos {
         return pingBuilder_;
       }
 
+      // optional .ided.Request.Analyze analyze = 2;
+      private com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze analyze_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze, com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.Request.AnalyzeOrBuilder> analyzeBuilder_;
+      /**
+       * <code>optional .ided.Request.Analyze analyze = 2;</code>
+       */
+      public boolean hasAnalyze() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .ided.Request.Analyze analyze = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze getAnalyze() {
+        if (analyzeBuilder_ == null) {
+          return analyze_;
+        } else {
+          return analyzeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .ided.Request.Analyze analyze = 2;</code>
+       */
+      public Builder setAnalyze(com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze value) {
+        if (analyzeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          analyze_ = value;
+          onChanged();
+        } else {
+          analyzeBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.Request.Analyze analyze = 2;</code>
+       */
+      public Builder setAnalyze(
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.Builder builderForValue) {
+        if (analyzeBuilder_ == null) {
+          analyze_ = builderForValue.build();
+          onChanged();
+        } else {
+          analyzeBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.Request.Analyze analyze = 2;</code>
+       */
+      public Builder mergeAnalyze(com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze value) {
+        if (analyzeBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              analyze_ != com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.getDefaultInstance()) {
+            analyze_ =
+              com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.newBuilder(analyze_).mergeFrom(value).buildPartial();
+          } else {
+            analyze_ = value;
+          }
+          onChanged();
+        } else {
+          analyzeBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.Request.Analyze analyze = 2;</code>
+       */
+      public Builder clearAnalyze() {
+        if (analyzeBuilder_ == null) {
+          analyze_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.getDefaultInstance();
+          onChanged();
+        } else {
+          analyzeBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .ided.Request.Analyze analyze = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.Builder getAnalyzeBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getAnalyzeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .ided.Request.Analyze analyze = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.Request.AnalyzeOrBuilder getAnalyzeOrBuilder() {
+        if (analyzeBuilder_ != null) {
+          return analyzeBuilder_.getMessageOrBuilder();
+        } else {
+          return analyze_;
+        }
+      }
+      /**
+       * <code>optional .ided.Request.Analyze analyze = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze, com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.Request.AnalyzeOrBuilder> 
+          getAnalyzeFieldBuilder() {
+        if (analyzeBuilder_ == null) {
+          analyzeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze, com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Analyze.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.Request.AnalyzeOrBuilder>(
+                  analyze_,
+                  getParentForChildren(),
+                  isClean());
+          analyze_ = null;
+        }
+        return analyzeBuilder_;
+      }
+
       // optional .ided.Request.Unknown unknown_command = 999;
       private com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Unknown unknownCommand_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Unknown.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
@@ -1213,7 +5674,7 @@ public final class IdedProtos {
        * <code>optional .ided.Request.Unknown unknown_command = 999;</code>
        */
       public boolean hasUnknownCommand() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       /**
        * <code>optional .ided.Request.Unknown unknown_command = 999;</code>
@@ -1238,7 +5699,7 @@ public final class IdedProtos {
         } else {
           unknownCommandBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
@@ -1252,7 +5713,7 @@ public final class IdedProtos {
         } else {
           unknownCommandBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
@@ -1260,7 +5721,7 @@ public final class IdedProtos {
        */
       public Builder mergeUnknownCommand(com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Unknown value) {
         if (unknownCommandBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
               unknownCommand_ != com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Unknown.getDefaultInstance()) {
             unknownCommand_ =
               com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Unknown.newBuilder(unknownCommand_).mergeFrom(value).buildPartial();
@@ -1271,7 +5732,7 @@ public final class IdedProtos {
         } else {
           unknownCommandBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       /**
@@ -1284,14 +5745,14 @@ public final class IdedProtos {
         } else {
           unknownCommandBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       /**
        * <code>optional .ided.Request.Unknown unknown_command = 999;</code>
        */
       public com.github.stepancheg.rustide.client.proto.IdedProtos.Request.Unknown.Builder getUnknownCommandBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getUnknownCommandFieldBuilder().getBuilder();
       }
@@ -1349,6 +5810,20 @@ public final class IdedProtos {
      * <code>optional .ided.Response.Ping ping = 1;</code>
      */
     com.github.stepancheg.rustide.client.proto.IdedProtos.Response.PingOrBuilder getPingOrBuilder();
+
+    // optional .ided.Response.Analyze analyze = 2;
+    /**
+     * <code>optional .ided.Response.Analyze analyze = 2;</code>
+     */
+    boolean hasAnalyze();
+    /**
+     * <code>optional .ided.Response.Analyze analyze = 2;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze getAnalyze();
+    /**
+     * <code>optional .ided.Response.Analyze analyze = 2;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.Response.AnalyzeOrBuilder getAnalyzeOrBuilder();
   }
   /**
    * Protobuf type {@code ided.Response}
@@ -1412,6 +5887,19 @@ public final class IdedProtos {
                 ping_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000001;
+              break;
+            }
+            case 18: {
+              com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = analyze_.toBuilder();
+              }
+              analyze_ = input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(analyze_);
+                analyze_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
               break;
             }
           }
@@ -1762,6 +6250,875 @@ public final class IdedProtos {
       // @@protoc_insertion_point(class_scope:ided.Response.Ping)
     }
 
+    public interface AnalyzeOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+
+      // optional .ided.LazyAst ast = 1;
+      /**
+       * <code>optional .ided.LazyAst ast = 1;</code>
+       */
+      boolean hasAst();
+      /**
+       * <code>optional .ided.LazyAst ast = 1;</code>
+       */
+      com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst getAst();
+      /**
+       * <code>optional .ided.LazyAst ast = 1;</code>
+       */
+      com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAstOrBuilder getAstOrBuilder();
+
+      // repeated .ided.Error errors = 5;
+      /**
+       * <code>repeated .ided.Error errors = 5;</code>
+       */
+      java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.Error> 
+          getErrorsList();
+      /**
+       * <code>repeated .ided.Error errors = 5;</code>
+       */
+      com.github.stepancheg.rustide.client.proto.IdedProtos.Error getErrors(int index);
+      /**
+       * <code>repeated .ided.Error errors = 5;</code>
+       */
+      int getErrorsCount();
+      /**
+       * <code>repeated .ided.Error errors = 5;</code>
+       */
+      java.util.List<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.ErrorOrBuilder> 
+          getErrorsOrBuilderList();
+      /**
+       * <code>repeated .ided.Error errors = 5;</code>
+       */
+      com.github.stepancheg.rustide.client.proto.IdedProtos.ErrorOrBuilder getErrorsOrBuilder(
+          int index);
+    }
+    /**
+     * Protobuf type {@code ided.Response.Analyze}
+     */
+    public static final class Analyze extends
+        com.google.protobuf.GeneratedMessage
+        implements AnalyzeOrBuilder {
+      // Use Analyze.newBuilder() to construct.
+      private Analyze(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private Analyze(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final Analyze defaultInstance;
+      public static Analyze getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public Analyze getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Analyze(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 10: {
+                com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.Builder subBuilder = null;
+                if (((bitField0_ & 0x00000001) == 0x00000001)) {
+                  subBuilder = ast_.toBuilder();
+                }
+                ast_ = input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.PARSER, extensionRegistry);
+                if (subBuilder != null) {
+                  subBuilder.mergeFrom(ast_);
+                  ast_ = subBuilder.buildPartial();
+                }
+                bitField0_ |= 0x00000001;
+                break;
+              }
+              case 42: {
+                if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                  errors_ = new java.util.ArrayList<com.github.stepancheg.rustide.client.proto.IdedProtos.Error>();
+                  mutable_bitField0_ |= 0x00000002;
+                }
+                errors_.add(input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.Error.PARSER, extensionRegistry));
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+            errors_ = java.util.Collections.unmodifiableList(errors_);
+          }
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Response_Analyze_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Response_Analyze_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.class, com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<Analyze> PARSER =
+          new com.google.protobuf.AbstractParser<Analyze>() {
+        public Analyze parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Analyze(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Analyze> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      // optional .ided.LazyAst ast = 1;
+      public static final int AST_FIELD_NUMBER = 1;
+      private com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst ast_;
+      /**
+       * <code>optional .ided.LazyAst ast = 1;</code>
+       */
+      public boolean hasAst() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional .ided.LazyAst ast = 1;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst getAst() {
+        return ast_;
+      }
+      /**
+       * <code>optional .ided.LazyAst ast = 1;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAstOrBuilder getAstOrBuilder() {
+        return ast_;
+      }
+
+      // repeated .ided.Error errors = 5;
+      public static final int ERRORS_FIELD_NUMBER = 5;
+      private java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.Error> errors_;
+      /**
+       * <code>repeated .ided.Error errors = 5;</code>
+       */
+      public java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.Error> getErrorsList() {
+        return errors_;
+      }
+      /**
+       * <code>repeated .ided.Error errors = 5;</code>
+       */
+      public java.util.List<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.ErrorOrBuilder> 
+          getErrorsOrBuilderList() {
+        return errors_;
+      }
+      /**
+       * <code>repeated .ided.Error errors = 5;</code>
+       */
+      public int getErrorsCount() {
+        return errors_.size();
+      }
+      /**
+       * <code>repeated .ided.Error errors = 5;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.Error getErrors(int index) {
+        return errors_.get(index);
+      }
+      /**
+       * <code>repeated .ided.Error errors = 5;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.ErrorOrBuilder getErrorsOrBuilder(
+          int index) {
+        return errors_.get(index);
+      }
+
+      private void initFields() {
+        ast_ = com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.getDefaultInstance();
+        errors_ = java.util.Collections.emptyList();
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeMessage(1, ast_);
+        }
+        for (int i = 0; i < errors_.size(); i++) {
+          output.writeMessage(5, errors_.get(i));
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(1, ast_);
+        }
+        for (int i = 0; i < errors_.size(); i++) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(5, errors_.get(i));
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code ided.Response.Analyze}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements com.github.stepancheg.rustide.client.proto.IdedProtos.Response.AnalyzeOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Response_Analyze_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Response_Analyze_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.class, com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.Builder.class);
+        }
+
+        // Construct using com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+            getAstFieldBuilder();
+            getErrorsFieldBuilder();
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          if (astBuilder_ == null) {
+            ast_ = com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.getDefaultInstance();
+          } else {
+            astBuilder_.clear();
+          }
+          bitField0_ = (bitField0_ & ~0x00000001);
+          if (errorsBuilder_ == null) {
+            errors_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+          } else {
+            errorsBuilder_.clear();
+          }
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_Response_Analyze_descriptor;
+        }
+
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze getDefaultInstanceForType() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.getDefaultInstance();
+        }
+
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze build() {
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze buildPartial() {
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze result = new com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          if (astBuilder_ == null) {
+            result.ast_ = ast_;
+          } else {
+            result.ast_ = astBuilder_.build();
+          }
+          if (errorsBuilder_ == null) {
+            if (((bitField0_ & 0x00000002) == 0x00000002)) {
+              errors_ = java.util.Collections.unmodifiableList(errors_);
+              bitField0_ = (bitField0_ & ~0x00000002);
+            }
+            result.errors_ = errors_;
+          } else {
+            result.errors_ = errorsBuilder_.build();
+          }
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze) {
+            return mergeFrom((com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze other) {
+          if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.getDefaultInstance()) return this;
+          if (other.hasAst()) {
+            mergeAst(other.getAst());
+          }
+          if (errorsBuilder_ == null) {
+            if (!other.errors_.isEmpty()) {
+              if (errors_.isEmpty()) {
+                errors_ = other.errors_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+              } else {
+                ensureErrorsIsMutable();
+                errors_.addAll(other.errors_);
+              }
+              onChanged();
+            }
+          } else {
+            if (!other.errors_.isEmpty()) {
+              if (errorsBuilder_.isEmpty()) {
+                errorsBuilder_.dispose();
+                errorsBuilder_ = null;
+                errors_ = other.errors_;
+                bitField0_ = (bitField0_ & ~0x00000002);
+                errorsBuilder_ = 
+                  com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                     getErrorsFieldBuilder() : null;
+              } else {
+                errorsBuilder_.addAllMessages(other.errors_);
+              }
+            }
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        // optional .ided.LazyAst ast = 1;
+        private com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst ast_ = com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.getDefaultInstance();
+        private com.google.protobuf.SingleFieldBuilder<
+            com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst, com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAstOrBuilder> astBuilder_;
+        /**
+         * <code>optional .ided.LazyAst ast = 1;</code>
+         */
+        public boolean hasAst() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>optional .ided.LazyAst ast = 1;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst getAst() {
+          if (astBuilder_ == null) {
+            return ast_;
+          } else {
+            return astBuilder_.getMessage();
+          }
+        }
+        /**
+         * <code>optional .ided.LazyAst ast = 1;</code>
+         */
+        public Builder setAst(com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst value) {
+          if (astBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ast_ = value;
+            onChanged();
+          } else {
+            astBuilder_.setMessage(value);
+          }
+          bitField0_ |= 0x00000001;
+          return this;
+        }
+        /**
+         * <code>optional .ided.LazyAst ast = 1;</code>
+         */
+        public Builder setAst(
+            com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.Builder builderForValue) {
+          if (astBuilder_ == null) {
+            ast_ = builderForValue.build();
+            onChanged();
+          } else {
+            astBuilder_.setMessage(builderForValue.build());
+          }
+          bitField0_ |= 0x00000001;
+          return this;
+        }
+        /**
+         * <code>optional .ided.LazyAst ast = 1;</code>
+         */
+        public Builder mergeAst(com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst value) {
+          if (astBuilder_ == null) {
+            if (((bitField0_ & 0x00000001) == 0x00000001) &&
+                ast_ != com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.getDefaultInstance()) {
+              ast_ =
+                com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.newBuilder(ast_).mergeFrom(value).buildPartial();
+            } else {
+              ast_ = value;
+            }
+            onChanged();
+          } else {
+            astBuilder_.mergeFrom(value);
+          }
+          bitField0_ |= 0x00000001;
+          return this;
+        }
+        /**
+         * <code>optional .ided.LazyAst ast = 1;</code>
+         */
+        public Builder clearAst() {
+          if (astBuilder_ == null) {
+            ast_ = com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.getDefaultInstance();
+            onChanged();
+          } else {
+            astBuilder_.clear();
+          }
+          bitField0_ = (bitField0_ & ~0x00000001);
+          return this;
+        }
+        /**
+         * <code>optional .ided.LazyAst ast = 1;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.Builder getAstBuilder() {
+          bitField0_ |= 0x00000001;
+          onChanged();
+          return getAstFieldBuilder().getBuilder();
+        }
+        /**
+         * <code>optional .ided.LazyAst ast = 1;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAstOrBuilder getAstOrBuilder() {
+          if (astBuilder_ != null) {
+            return astBuilder_.getMessageOrBuilder();
+          } else {
+            return ast_;
+          }
+        }
+        /**
+         * <code>optional .ided.LazyAst ast = 1;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilder<
+            com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst, com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAstOrBuilder> 
+            getAstFieldBuilder() {
+          if (astBuilder_ == null) {
+            astBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+                com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst, com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAstOrBuilder>(
+                    ast_,
+                    getParentForChildren(),
+                    isClean());
+            ast_ = null;
+          }
+          return astBuilder_;
+        }
+
+        // repeated .ided.Error errors = 5;
+        private java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.Error> errors_ =
+          java.util.Collections.emptyList();
+        private void ensureErrorsIsMutable() {
+          if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+            errors_ = new java.util.ArrayList<com.github.stepancheg.rustide.client.proto.IdedProtos.Error>(errors_);
+            bitField0_ |= 0x00000002;
+           }
+        }
+
+        private com.google.protobuf.RepeatedFieldBuilder<
+            com.github.stepancheg.rustide.client.proto.IdedProtos.Error, com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.ErrorOrBuilder> errorsBuilder_;
+
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.Error> getErrorsList() {
+          if (errorsBuilder_ == null) {
+            return java.util.Collections.unmodifiableList(errors_);
+          } else {
+            return errorsBuilder_.getMessageList();
+          }
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public int getErrorsCount() {
+          if (errorsBuilder_ == null) {
+            return errors_.size();
+          } else {
+            return errorsBuilder_.getCount();
+          }
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.Error getErrors(int index) {
+          if (errorsBuilder_ == null) {
+            return errors_.get(index);
+          } else {
+            return errorsBuilder_.getMessage(index);
+          }
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public Builder setErrors(
+            int index, com.github.stepancheg.rustide.client.proto.IdedProtos.Error value) {
+          if (errorsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureErrorsIsMutable();
+            errors_.set(index, value);
+            onChanged();
+          } else {
+            errorsBuilder_.setMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public Builder setErrors(
+            int index, com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder builderForValue) {
+          if (errorsBuilder_ == null) {
+            ensureErrorsIsMutable();
+            errors_.set(index, builderForValue.build());
+            onChanged();
+          } else {
+            errorsBuilder_.setMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public Builder addErrors(com.github.stepancheg.rustide.client.proto.IdedProtos.Error value) {
+          if (errorsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureErrorsIsMutable();
+            errors_.add(value);
+            onChanged();
+          } else {
+            errorsBuilder_.addMessage(value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public Builder addErrors(
+            int index, com.github.stepancheg.rustide.client.proto.IdedProtos.Error value) {
+          if (errorsBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            ensureErrorsIsMutable();
+            errors_.add(index, value);
+            onChanged();
+          } else {
+            errorsBuilder_.addMessage(index, value);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public Builder addErrors(
+            com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder builderForValue) {
+          if (errorsBuilder_ == null) {
+            ensureErrorsIsMutable();
+            errors_.add(builderForValue.build());
+            onChanged();
+          } else {
+            errorsBuilder_.addMessage(builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public Builder addErrors(
+            int index, com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder builderForValue) {
+          if (errorsBuilder_ == null) {
+            ensureErrorsIsMutable();
+            errors_.add(index, builderForValue.build());
+            onChanged();
+          } else {
+            errorsBuilder_.addMessage(index, builderForValue.build());
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public Builder addAllErrors(
+            java.lang.Iterable<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.Error> values) {
+          if (errorsBuilder_ == null) {
+            ensureErrorsIsMutable();
+            super.addAll(values, errors_);
+            onChanged();
+          } else {
+            errorsBuilder_.addAllMessages(values);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public Builder clearErrors() {
+          if (errorsBuilder_ == null) {
+            errors_ = java.util.Collections.emptyList();
+            bitField0_ = (bitField0_ & ~0x00000002);
+            onChanged();
+          } else {
+            errorsBuilder_.clear();
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public Builder removeErrors(int index) {
+          if (errorsBuilder_ == null) {
+            ensureErrorsIsMutable();
+            errors_.remove(index);
+            onChanged();
+          } else {
+            errorsBuilder_.remove(index);
+          }
+          return this;
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder getErrorsBuilder(
+            int index) {
+          return getErrorsFieldBuilder().getBuilder(index);
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.ErrorOrBuilder getErrorsOrBuilder(
+            int index) {
+          if (errorsBuilder_ == null) {
+            return errors_.get(index);  } else {
+            return errorsBuilder_.getMessageOrBuilder(index);
+          }
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public java.util.List<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.ErrorOrBuilder> 
+             getErrorsOrBuilderList() {
+          if (errorsBuilder_ != null) {
+            return errorsBuilder_.getMessageOrBuilderList();
+          } else {
+            return java.util.Collections.unmodifiableList(errors_);
+          }
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder addErrorsBuilder() {
+          return getErrorsFieldBuilder().addBuilder(
+              com.github.stepancheg.rustide.client.proto.IdedProtos.Error.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder addErrorsBuilder(
+            int index) {
+          return getErrorsFieldBuilder().addBuilder(
+              index, com.github.stepancheg.rustide.client.proto.IdedProtos.Error.getDefaultInstance());
+        }
+        /**
+         * <code>repeated .ided.Error errors = 5;</code>
+         */
+        public java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder> 
+             getErrorsBuilderList() {
+          return getErrorsFieldBuilder().getBuilderList();
+        }
+        private com.google.protobuf.RepeatedFieldBuilder<
+            com.github.stepancheg.rustide.client.proto.IdedProtos.Error, com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.ErrorOrBuilder> 
+            getErrorsFieldBuilder() {
+          if (errorsBuilder_ == null) {
+            errorsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+                com.github.stepancheg.rustide.client.proto.IdedProtos.Error, com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.ErrorOrBuilder>(
+                    errors_,
+                    ((bitField0_ & 0x00000002) == 0x00000002),
+                    getParentForChildren(),
+                    isClean());
+            errors_ = null;
+          }
+          return errorsBuilder_;
+        }
+
+        // @@protoc_insertion_point(builder_scope:ided.Response.Analyze)
+      }
+
+      static {
+        defaultInstance = new Analyze(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:ided.Response.Analyze)
+    }
+
     private int bitField0_;
     // optional .ided.Response.Ping ping = 1;
     public static final int PING_FIELD_NUMBER = 1;
@@ -1785,8 +7142,31 @@ public final class IdedProtos {
       return ping_;
     }
 
+    // optional .ided.Response.Analyze analyze = 2;
+    public static final int ANALYZE_FIELD_NUMBER = 2;
+    private com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze analyze_;
+    /**
+     * <code>optional .ided.Response.Analyze analyze = 2;</code>
+     */
+    public boolean hasAnalyze() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .ided.Response.Analyze analyze = 2;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze getAnalyze() {
+      return analyze_;
+    }
+    /**
+     * <code>optional .ided.Response.Analyze analyze = 2;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.Response.AnalyzeOrBuilder getAnalyzeOrBuilder() {
+      return analyze_;
+    }
+
     private void initFields() {
       ping_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Ping.getDefaultInstance();
+      analyze_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -1803,6 +7183,9 @@ public final class IdedProtos {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeMessage(1, ping_);
       }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, analyze_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -1815,6 +7198,10 @@ public final class IdedProtos {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, ping_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, analyze_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -1925,6 +7312,7 @@ public final class IdedProtos {
       private void maybeForceBuilderInitialization() {
         if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
           getPingFieldBuilder();
+          getAnalyzeFieldBuilder();
         }
       }
       private static Builder create() {
@@ -1939,6 +7327,12 @@ public final class IdedProtos {
           pingBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000001);
+        if (analyzeBuilder_ == null) {
+          analyze_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.getDefaultInstance();
+        } else {
+          analyzeBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
@@ -1975,6 +7369,14 @@ public final class IdedProtos {
         } else {
           result.ping_ = pingBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (analyzeBuilder_ == null) {
+          result.analyze_ = analyze_;
+        } else {
+          result.analyze_ = analyzeBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -1993,6 +7395,9 @@ public final class IdedProtos {
         if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.Response.getDefaultInstance()) return this;
         if (other.hasPing()) {
           mergePing(other.getPing());
+        }
+        if (other.hasAnalyze()) {
+          mergeAnalyze(other.getAnalyze());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -2138,6 +7543,123 @@ public final class IdedProtos {
         return pingBuilder_;
       }
 
+      // optional .ided.Response.Analyze analyze = 2;
+      private com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze analyze_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze, com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.Response.AnalyzeOrBuilder> analyzeBuilder_;
+      /**
+       * <code>optional .ided.Response.Analyze analyze = 2;</code>
+       */
+      public boolean hasAnalyze() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .ided.Response.Analyze analyze = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze getAnalyze() {
+        if (analyzeBuilder_ == null) {
+          return analyze_;
+        } else {
+          return analyzeBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .ided.Response.Analyze analyze = 2;</code>
+       */
+      public Builder setAnalyze(com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze value) {
+        if (analyzeBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          analyze_ = value;
+          onChanged();
+        } else {
+          analyzeBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.Response.Analyze analyze = 2;</code>
+       */
+      public Builder setAnalyze(
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.Builder builderForValue) {
+        if (analyzeBuilder_ == null) {
+          analyze_ = builderForValue.build();
+          onChanged();
+        } else {
+          analyzeBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.Response.Analyze analyze = 2;</code>
+       */
+      public Builder mergeAnalyze(com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze value) {
+        if (analyzeBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              analyze_ != com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.getDefaultInstance()) {
+            analyze_ =
+              com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.newBuilder(analyze_).mergeFrom(value).buildPartial();
+          } else {
+            analyze_ = value;
+          }
+          onChanged();
+        } else {
+          analyzeBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .ided.Response.Analyze analyze = 2;</code>
+       */
+      public Builder clearAnalyze() {
+        if (analyzeBuilder_ == null) {
+          analyze_ = com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.getDefaultInstance();
+          onChanged();
+        } else {
+          analyzeBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .ided.Response.Analyze analyze = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.Builder getAnalyzeBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getAnalyzeFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .ided.Response.Analyze analyze = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.Response.AnalyzeOrBuilder getAnalyzeOrBuilder() {
+        if (analyzeBuilder_ != null) {
+          return analyzeBuilder_.getMessageOrBuilder();
+        } else {
+          return analyze_;
+        }
+      }
+      /**
+       * <code>optional .ided.Response.Analyze analyze = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze, com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.Response.AnalyzeOrBuilder> 
+          getAnalyzeFieldBuilder() {
+        if (analyzeBuilder_ == null) {
+          analyzeBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze, com.github.stepancheg.rustide.client.proto.IdedProtos.Response.Analyze.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.Response.AnalyzeOrBuilder>(
+                  analyze_,
+                  getParentForChildren(),
+                  isClean());
+          analyze_ = null;
+        }
+        return analyzeBuilder_;
+      }
+
       // @@protoc_insertion_point(builder_scope:ided.Response)
     }
 
@@ -2150,6 +7672,36 @@ public final class IdedProtos {
   }
 
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ided_FileSpan_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ided_FileSpan_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ided_ProjectSpan_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ided_ProjectSpan_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ided_Error_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ided_Error_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ided_File_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ided_File_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ided_NodeMarker_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ided_NodeMarker_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ided_LazyAst_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ided_LazyAst_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_ided_Request_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -2159,6 +7711,11 @@ public final class IdedProtos {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_ided_Request_Ping_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ided_Request_Analyze_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ided_Request_Analyze_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_ided_Request_Unknown_descriptor;
   private static
@@ -2174,6 +7731,11 @@ public final class IdedProtos {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_ided_Response_Ping_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ided_Response_Analyze_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ided_Response_Analyze_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -2183,49 +7745,110 @@ public final class IdedProtos {
       descriptor;
   static {
     java.lang.String[] descriptorData = {
-      "\n\nided.proto\022\004ided\"o\n\007Request\022 \n\004ping\030\001 " +
-      "\001(\0132\022.ided.Request.Ping\022/\n\017unknown_comma" +
-      "nd\030\347\007 \001(\0132\025.ided.Request.Unknown\032\006\n\004Ping" +
-      "\032\t\n\007Unknown\"5\n\010Response\022!\n\004ping\030\001 \001(\0132\023." +
-      "ided.Response.Ping\032\006\n\004PingB8\n*com.github" +
-      ".stepancheg.rustide.client.protoB\nIdedPr" +
-      "otos"
+      "\n\nided.proto\022\004ided\"$\n\010FileSpan\022\013\n\003beg\030\001 " +
+      "\001(\005\022\013\n\003end\030\002 \001(\005\"9\n\013ProjectSpan\022\014\n\004file\030" +
+      "\001 \001(\t\022\034\n\004span\030\002 \001(\0132\016.ided.FileSpan\"5\n\005E" +
+      "rror\022\013\n\003msg\030\001 \001(\t\022\037\n\004span\030\002 \001(\0132\021.ided.P" +
+      "rojectSpan\"%\n\004File\022\014\n\004name\030\001 \001(\t\022\017\n\007cont" +
+      "ent\030\002 \001(\t\"J\n\nNodeMarker\022\013\n\003pos\030\001 \001(\005\022\014\n\004" +
+      "open\030\002 \001(\010\022!\n\tnode_type\030\003 \001(\0162\016.ided.Nod" +
+      "eType\",\n\007LazyAst\022!\n\007markers\030\005 \003(\0132\020.ided" +
+      ".NodeMarker\"\274\001\n\007Request\022 \n\004ping\030\001 \001(\0132\022." +
+      "ided.Request.Ping\022&\n\007analyze\030\002 \001(\0132\025.ide",
+      "d.Request.Analyze\022/\n\017unknown_command\030\347\007 " +
+      "\001(\0132\025.ided.Request.Unknown\032\006\n\004Ping\032#\n\007An" +
+      "alyze\022\030\n\004file\030\001 \001(\0132\n.ided.File\032\t\n\007Unkno" +
+      "wn\"\242\001\n\010Response\022!\n\004ping\030\001 \001(\0132\023.ided.Res" +
+      "ponse.Ping\022\'\n\007analyze\030\002 \001(\0132\026.ided.Respo" +
+      "nse.Analyze\032\006\n\004Ping\032B\n\007Analyze\022\032\n\003ast\030\001 " +
+      "\001(\0132\r.ided.LazyAst\022\033\n\006errors\030\005 \003(\0132\013.ide" +
+      "d.Error*2\n\010NodeType\022\014\n\010NodeRoot\020\001\022\n\n\006Nod" +
+      "eFn\020\002\022\014\n\010NodeStmt\020\003B8\n*com.github.stepan" +
+      "cheg.rustide.client.protoB\nIdedProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
         public com.google.protobuf.ExtensionRegistry assignDescriptors(
             com.google.protobuf.Descriptors.FileDescriptor root) {
           descriptor = root;
-          internal_static_ided_Request_descriptor =
+          internal_static_ided_FileSpan_descriptor =
             getDescriptor().getMessageTypes().get(0);
+          internal_static_ided_FileSpan_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ided_FileSpan_descriptor,
+              new java.lang.String[] { "Beg", "End", });
+          internal_static_ided_ProjectSpan_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_ided_ProjectSpan_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ided_ProjectSpan_descriptor,
+              new java.lang.String[] { "File", "Span", });
+          internal_static_ided_Error_descriptor =
+            getDescriptor().getMessageTypes().get(2);
+          internal_static_ided_Error_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ided_Error_descriptor,
+              new java.lang.String[] { "Msg", "Span", });
+          internal_static_ided_File_descriptor =
+            getDescriptor().getMessageTypes().get(3);
+          internal_static_ided_File_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ided_File_descriptor,
+              new java.lang.String[] { "Name", "Content", });
+          internal_static_ided_NodeMarker_descriptor =
+            getDescriptor().getMessageTypes().get(4);
+          internal_static_ided_NodeMarker_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ided_NodeMarker_descriptor,
+              new java.lang.String[] { "Pos", "Open", "NodeType", });
+          internal_static_ided_LazyAst_descriptor =
+            getDescriptor().getMessageTypes().get(5);
+          internal_static_ided_LazyAst_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ided_LazyAst_descriptor,
+              new java.lang.String[] { "Markers", });
+          internal_static_ided_Request_descriptor =
+            getDescriptor().getMessageTypes().get(6);
           internal_static_ided_Request_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ided_Request_descriptor,
-              new java.lang.String[] { "Ping", "UnknownCommand", });
+              new java.lang.String[] { "Ping", "Analyze", "UnknownCommand", });
           internal_static_ided_Request_Ping_descriptor =
             internal_static_ided_Request_descriptor.getNestedTypes().get(0);
           internal_static_ided_Request_Ping_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ided_Request_Ping_descriptor,
               new java.lang.String[] { });
-          internal_static_ided_Request_Unknown_descriptor =
+          internal_static_ided_Request_Analyze_descriptor =
             internal_static_ided_Request_descriptor.getNestedTypes().get(1);
+          internal_static_ided_Request_Analyze_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ided_Request_Analyze_descriptor,
+              new java.lang.String[] { "File", });
+          internal_static_ided_Request_Unknown_descriptor =
+            internal_static_ided_Request_descriptor.getNestedTypes().get(2);
           internal_static_ided_Request_Unknown_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ided_Request_Unknown_descriptor,
               new java.lang.String[] { });
           internal_static_ided_Response_descriptor =
-            getDescriptor().getMessageTypes().get(1);
+            getDescriptor().getMessageTypes().get(7);
           internal_static_ided_Response_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ided_Response_descriptor,
-              new java.lang.String[] { "Ping", });
+              new java.lang.String[] { "Ping", "Analyze", });
           internal_static_ided_Response_Ping_descriptor =
             internal_static_ided_Response_descriptor.getNestedTypes().get(0);
           internal_static_ided_Response_Ping_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ided_Response_Ping_descriptor,
               new java.lang.String[] { });
+          internal_static_ided_Response_Analyze_descriptor =
+            internal_static_ided_Response_descriptor.getNestedTypes().get(1);
+          internal_static_ided_Response_Analyze_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ided_Response_Analyze_descriptor,
+              new java.lang.String[] { "Ast", "Errors", });
           return null;
         }
       };
