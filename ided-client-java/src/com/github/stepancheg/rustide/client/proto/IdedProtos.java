@@ -25,6 +25,18 @@ public final class IdedProtos {
      * <code>NodeStmt = 3;</code>
      */
     NodeStmt(2, 3),
+    /**
+     * <code>NodeStructDef = 4;</code>
+     */
+    NodeStructDef(3, 4),
+    /**
+     * <code>NodeTy = 5;</code>
+     */
+    NodeTy(4, 5),
+    /**
+     * <code>NodeOther = 100;</code>
+     */
+    NodeOther(5, 100),
     ;
 
     /**
@@ -39,6 +51,18 @@ public final class IdedProtos {
      * <code>NodeStmt = 3;</code>
      */
     public static final int NodeStmt_VALUE = 3;
+    /**
+     * <code>NodeStructDef = 4;</code>
+     */
+    public static final int NodeStructDef_VALUE = 4;
+    /**
+     * <code>NodeTy = 5;</code>
+     */
+    public static final int NodeTy_VALUE = 5;
+    /**
+     * <code>NodeOther = 100;</code>
+     */
+    public static final int NodeOther_VALUE = 100;
 
 
     public final int getNumber() { return value; }
@@ -48,6 +72,9 @@ public final class IdedProtos {
         case 1: return NodeRoot;
         case 2: return NodeFn;
         case 3: return NodeStmt;
+        case 4: return NodeStructDef;
+        case 5: return NodeTy;
+        case 100: return NodeOther;
         default: return null;
       }
     }
@@ -2561,6 +2588,16 @@ public final class IdedProtos {
      * <code>optional .ided.NodeType node_type = 3;</code>
      */
     com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType getNodeType();
+
+    // optional int32 id = 4;
+    /**
+     * <code>optional int32 id = 4;</code>
+     */
+    boolean hasId();
+    /**
+     * <code>optional int32 id = 4;</code>
+     */
+    int getId();
   }
   /**
    * Protobuf type {@code ided.NodeMarker}
@@ -2632,6 +2669,11 @@ public final class IdedProtos {
                 bitField0_ |= 0x00000004;
                 nodeType_ = value;
               }
+              break;
+            }
+            case 32: {
+              bitField0_ |= 0x00000008;
+              id_ = input.readInt32();
               break;
             }
           }
@@ -2722,10 +2764,27 @@ public final class IdedProtos {
       return nodeType_;
     }
 
+    // optional int32 id = 4;
+    public static final int ID_FIELD_NUMBER = 4;
+    private int id_;
+    /**
+     * <code>optional int32 id = 4;</code>
+     */
+    public boolean hasId() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    /**
+     * <code>optional int32 id = 4;</code>
+     */
+    public int getId() {
+      return id_;
+    }
+
     private void initFields() {
       pos_ = 0;
       open_ = false;
       nodeType_ = com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType.NodeRoot;
+      id_ = 0;
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -2748,6 +2807,9 @@ public final class IdedProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeEnum(3, nodeType_.getNumber());
       }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeInt32(4, id_);
+      }
       getUnknownFields().writeTo(output);
     }
 
@@ -2768,6 +2830,10 @@ public final class IdedProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
           .computeEnumSize(3, nodeType_.getNumber());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt32Size(4, id_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -2891,6 +2957,8 @@ public final class IdedProtos {
         bitField0_ = (bitField0_ & ~0x00000002);
         nodeType_ = com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType.NodeRoot;
         bitField0_ = (bitField0_ & ~0x00000004);
+        id_ = 0;
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
@@ -2931,6 +2999,10 @@ public final class IdedProtos {
           to_bitField0_ |= 0x00000004;
         }
         result.nodeType_ = nodeType_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.id_ = id_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -2955,6 +3027,9 @@ public final class IdedProtos {
         }
         if (other.hasNodeType()) {
           setNodeType(other.getNodeType());
+        }
+        if (other.hasId()) {
+          setId(other.getId());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -3081,6 +3156,39 @@ public final class IdedProtos {
       public Builder clearNodeType() {
         bitField0_ = (bitField0_ & ~0x00000004);
         nodeType_ = com.github.stepancheg.rustide.client.proto.IdedProtos.NodeType.NodeRoot;
+        onChanged();
+        return this;
+      }
+
+      // optional int32 id = 4;
+      private int id_ ;
+      /**
+       * <code>optional int32 id = 4;</code>
+       */
+      public boolean hasId() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      /**
+       * <code>optional int32 id = 4;</code>
+       */
+      public int getId() {
+        return id_;
+      }
+      /**
+       * <code>optional int32 id = 4;</code>
+       */
+      public Builder setId(int value) {
+        bitField0_ |= 0x00000008;
+        id_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>optional int32 id = 4;</code>
+       */
+      public Builder clearId() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        id_ = 0;
         onChanged();
         return this;
       }
@@ -3768,6 +3876,1157 @@ public final class IdedProtos {
     }
 
     // @@protoc_insertion_point(class_scope:ided.LazyAst)
+  }
+
+  public interface JumpMapOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // repeated .ided.JumpMap.Entry entries = 1;
+    /**
+     * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+     */
+    java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry> 
+        getEntriesList();
+    /**
+     * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry getEntries(int index);
+    /**
+     * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+     */
+    int getEntriesCount();
+    /**
+     * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+     */
+    java.util.List<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.EntryOrBuilder> 
+        getEntriesOrBuilderList();
+    /**
+     * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+     */
+    com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.EntryOrBuilder getEntriesOrBuilder(
+        int index);
+  }
+  /**
+   * Protobuf type {@code ided.JumpMap}
+   */
+  public static final class JumpMap extends
+      com.google.protobuf.GeneratedMessage
+      implements JumpMapOrBuilder {
+    // Use JumpMap.newBuilder() to construct.
+    private JumpMap(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private JumpMap(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final JumpMap defaultInstance;
+    public static JumpMap getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public JumpMap getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private JumpMap(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              if (!((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+                entries_ = new java.util.ArrayList<com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry>();
+                mutable_bitField0_ |= 0x00000001;
+              }
+              entries_.add(input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.PARSER, extensionRegistry));
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
+          entries_ = java.util.Collections.unmodifiableList(entries_);
+        }
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_JumpMap_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_JumpMap_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.class, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<JumpMap> PARSER =
+        new com.google.protobuf.AbstractParser<JumpMap>() {
+      public JumpMap parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new JumpMap(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<JumpMap> getParserForType() {
+      return PARSER;
+    }
+
+    public interface EntryOrBuilder
+        extends com.google.protobuf.MessageOrBuilder {
+
+      // optional int32 source_node_id = 1;
+      /**
+       * <code>optional int32 source_node_id = 1;</code>
+       */
+      boolean hasSourceNodeId();
+      /**
+       * <code>optional int32 source_node_id = 1;</code>
+       */
+      int getSourceNodeId();
+
+      // optional int32 target_node_id = 2;
+      /**
+       * <code>optional int32 target_node_id = 2;</code>
+       */
+      boolean hasTargetNodeId();
+      /**
+       * <code>optional int32 target_node_id = 2;</code>
+       */
+      int getTargetNodeId();
+    }
+    /**
+     * Protobuf type {@code ided.JumpMap.Entry}
+     */
+    public static final class Entry extends
+        com.google.protobuf.GeneratedMessage
+        implements EntryOrBuilder {
+      // Use Entry.newBuilder() to construct.
+      private Entry(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+        super(builder);
+        this.unknownFields = builder.getUnknownFields();
+      }
+      private Entry(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+      private static final Entry defaultInstance;
+      public static Entry getDefaultInstance() {
+        return defaultInstance;
+      }
+
+      public Entry getDefaultInstanceForType() {
+        return defaultInstance;
+      }
+
+      private final com.google.protobuf.UnknownFieldSet unknownFields;
+      @java.lang.Override
+      public final com.google.protobuf.UnknownFieldSet
+          getUnknownFields() {
+        return this.unknownFields;
+      }
+      private Entry(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        initFields();
+        int mutable_bitField0_ = 0;
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+            com.google.protobuf.UnknownFieldSet.newBuilder();
+        try {
+          boolean done = false;
+          while (!done) {
+            int tag = input.readTag();
+            switch (tag) {
+              case 0:
+                done = true;
+                break;
+              default: {
+                if (!parseUnknownField(input, unknownFields,
+                                       extensionRegistry, tag)) {
+                  done = true;
+                }
+                break;
+              }
+              case 8: {
+                bitField0_ |= 0x00000001;
+                sourceNodeId_ = input.readInt32();
+                break;
+              }
+              case 16: {
+                bitField0_ |= 0x00000002;
+                targetNodeId_ = input.readInt32();
+                break;
+              }
+            }
+          }
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          throw e.setUnfinishedMessage(this);
+        } catch (java.io.IOException e) {
+          throw new com.google.protobuf.InvalidProtocolBufferException(
+              e.getMessage()).setUnfinishedMessage(this);
+        } finally {
+          this.unknownFields = unknownFields.build();
+          makeExtensionsImmutable();
+        }
+      }
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_JumpMap_Entry_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_JumpMap_Entry_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.class, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder.class);
+      }
+
+      public static com.google.protobuf.Parser<Entry> PARSER =
+          new com.google.protobuf.AbstractParser<Entry>() {
+        public Entry parsePartialFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws com.google.protobuf.InvalidProtocolBufferException {
+          return new Entry(input, extensionRegistry);
+        }
+      };
+
+      @java.lang.Override
+      public com.google.protobuf.Parser<Entry> getParserForType() {
+        return PARSER;
+      }
+
+      private int bitField0_;
+      // optional int32 source_node_id = 1;
+      public static final int SOURCE_NODE_ID_FIELD_NUMBER = 1;
+      private int sourceNodeId_;
+      /**
+       * <code>optional int32 source_node_id = 1;</code>
+       */
+      public boolean hasSourceNodeId() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>optional int32 source_node_id = 1;</code>
+       */
+      public int getSourceNodeId() {
+        return sourceNodeId_;
+      }
+
+      // optional int32 target_node_id = 2;
+      public static final int TARGET_NODE_ID_FIELD_NUMBER = 2;
+      private int targetNodeId_;
+      /**
+       * <code>optional int32 target_node_id = 2;</code>
+       */
+      public boolean hasTargetNodeId() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional int32 target_node_id = 2;</code>
+       */
+      public int getTargetNodeId() {
+        return targetNodeId_;
+      }
+
+      private void initFields() {
+        sourceNodeId_ = 0;
+        targetNodeId_ = 0;
+      }
+      private byte memoizedIsInitialized = -1;
+      public final boolean isInitialized() {
+        byte isInitialized = memoizedIsInitialized;
+        if (isInitialized != -1) return isInitialized == 1;
+
+        memoizedIsInitialized = 1;
+        return true;
+      }
+
+      public void writeTo(com.google.protobuf.CodedOutputStream output)
+                          throws java.io.IOException {
+        getSerializedSize();
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          output.writeInt32(1, sourceNodeId_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeInt32(2, targetNodeId_);
+        }
+        getUnknownFields().writeTo(output);
+      }
+
+      private int memoizedSerializedSize = -1;
+      public int getSerializedSize() {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+
+        size = 0;
+        if (((bitField0_ & 0x00000001) == 0x00000001)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(1, sourceNodeId_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeInt32Size(2, targetNodeId_);
+        }
+        size += getUnknownFields().getSerializedSize();
+        memoizedSerializedSize = size;
+        return size;
+      }
+
+      private static final long serialVersionUID = 0L;
+      @java.lang.Override
+      protected java.lang.Object writeReplace()
+          throws java.io.ObjectStreamException {
+        return super.writeReplace();
+      }
+
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry parseFrom(
+          com.google.protobuf.ByteString data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry parseFrom(
+          com.google.protobuf.ByteString data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry parseFrom(byte[] data)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry parseFrom(
+          byte[] data,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return PARSER.parseFrom(data, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry parseFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry parseFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry parseDelimitedFrom(java.io.InputStream input)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry parseDelimitedFrom(
+          java.io.InputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseDelimitedFrom(input, extensionRegistry);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry parseFrom(
+          com.google.protobuf.CodedInputStream input)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input);
+      }
+      public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry parseFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        return PARSER.parseFrom(input, extensionRegistry);
+      }
+
+      public static Builder newBuilder() { return Builder.create(); }
+      public Builder newBuilderForType() { return newBuilder(); }
+      public static Builder newBuilder(com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry prototype) {
+        return newBuilder().mergeFrom(prototype);
+      }
+      public Builder toBuilder() { return newBuilder(this); }
+
+      @java.lang.Override
+      protected Builder newBuilderForType(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        Builder builder = new Builder(parent);
+        return builder;
+      }
+      /**
+       * Protobuf type {@code ided.JumpMap.Entry}
+       */
+      public static final class Builder extends
+          com.google.protobuf.GeneratedMessage.Builder<Builder>
+         implements com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.EntryOrBuilder {
+        public static final com.google.protobuf.Descriptors.Descriptor
+            getDescriptor() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_JumpMap_Entry_descriptor;
+        }
+
+        protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+            internalGetFieldAccessorTable() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_JumpMap_Entry_fieldAccessorTable
+              .ensureFieldAccessorsInitialized(
+                  com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.class, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder.class);
+        }
+
+        // Construct using com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.newBuilder()
+        private Builder() {
+          maybeForceBuilderInitialization();
+        }
+
+        private Builder(
+            com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+          super(parent);
+          maybeForceBuilderInitialization();
+        }
+        private void maybeForceBuilderInitialization() {
+          if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          }
+        }
+        private static Builder create() {
+          return new Builder();
+        }
+
+        public Builder clear() {
+          super.clear();
+          sourceNodeId_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000001);
+          targetNodeId_ = 0;
+          bitField0_ = (bitField0_ & ~0x00000002);
+          return this;
+        }
+
+        public Builder clone() {
+          return create().mergeFrom(buildPartial());
+        }
+
+        public com.google.protobuf.Descriptors.Descriptor
+            getDescriptorForType() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_JumpMap_Entry_descriptor;
+        }
+
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry getDefaultInstanceForType() {
+          return com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.getDefaultInstance();
+        }
+
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry build() {
+          com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry result = buildPartial();
+          if (!result.isInitialized()) {
+            throw newUninitializedMessageException(result);
+          }
+          return result;
+        }
+
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry buildPartial() {
+          com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry result = new com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry(this);
+          int from_bitField0_ = bitField0_;
+          int to_bitField0_ = 0;
+          if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+            to_bitField0_ |= 0x00000001;
+          }
+          result.sourceNodeId_ = sourceNodeId_;
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          result.targetNodeId_ = targetNodeId_;
+          result.bitField0_ = to_bitField0_;
+          onBuilt();
+          return result;
+        }
+
+        public Builder mergeFrom(com.google.protobuf.Message other) {
+          if (other instanceof com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry) {
+            return mergeFrom((com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry)other);
+          } else {
+            super.mergeFrom(other);
+            return this;
+          }
+        }
+
+        public Builder mergeFrom(com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry other) {
+          if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.getDefaultInstance()) return this;
+          if (other.hasSourceNodeId()) {
+            setSourceNodeId(other.getSourceNodeId());
+          }
+          if (other.hasTargetNodeId()) {
+            setTargetNodeId(other.getTargetNodeId());
+          }
+          this.mergeUnknownFields(other.getUnknownFields());
+          return this;
+        }
+
+        public final boolean isInitialized() {
+          return true;
+        }
+
+        public Builder mergeFrom(
+            com.google.protobuf.CodedInputStream input,
+            com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+            throws java.io.IOException {
+          com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry parsedMessage = null;
+          try {
+            parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+          } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+            parsedMessage = (com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry) e.getUnfinishedMessage();
+            throw e;
+          } finally {
+            if (parsedMessage != null) {
+              mergeFrom(parsedMessage);
+            }
+          }
+          return this;
+        }
+        private int bitField0_;
+
+        // optional int32 source_node_id = 1;
+        private int sourceNodeId_ ;
+        /**
+         * <code>optional int32 source_node_id = 1;</code>
+         */
+        public boolean hasSourceNodeId() {
+          return ((bitField0_ & 0x00000001) == 0x00000001);
+        }
+        /**
+         * <code>optional int32 source_node_id = 1;</code>
+         */
+        public int getSourceNodeId() {
+          return sourceNodeId_;
+        }
+        /**
+         * <code>optional int32 source_node_id = 1;</code>
+         */
+        public Builder setSourceNodeId(int value) {
+          bitField0_ |= 0x00000001;
+          sourceNodeId_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional int32 source_node_id = 1;</code>
+         */
+        public Builder clearSourceNodeId() {
+          bitField0_ = (bitField0_ & ~0x00000001);
+          sourceNodeId_ = 0;
+          onChanged();
+          return this;
+        }
+
+        // optional int32 target_node_id = 2;
+        private int targetNodeId_ ;
+        /**
+         * <code>optional int32 target_node_id = 2;</code>
+         */
+        public boolean hasTargetNodeId() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>optional int32 target_node_id = 2;</code>
+         */
+        public int getTargetNodeId() {
+          return targetNodeId_;
+        }
+        /**
+         * <code>optional int32 target_node_id = 2;</code>
+         */
+        public Builder setTargetNodeId(int value) {
+          bitField0_ |= 0x00000002;
+          targetNodeId_ = value;
+          onChanged();
+          return this;
+        }
+        /**
+         * <code>optional int32 target_node_id = 2;</code>
+         */
+        public Builder clearTargetNodeId() {
+          bitField0_ = (bitField0_ & ~0x00000002);
+          targetNodeId_ = 0;
+          onChanged();
+          return this;
+        }
+
+        // @@protoc_insertion_point(builder_scope:ided.JumpMap.Entry)
+      }
+
+      static {
+        defaultInstance = new Entry(true);
+        defaultInstance.initFields();
+      }
+
+      // @@protoc_insertion_point(class_scope:ided.JumpMap.Entry)
+    }
+
+    // repeated .ided.JumpMap.Entry entries = 1;
+    public static final int ENTRIES_FIELD_NUMBER = 1;
+    private java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry> entries_;
+    /**
+     * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+     */
+    public java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry> getEntriesList() {
+      return entries_;
+    }
+    /**
+     * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+     */
+    public java.util.List<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.EntryOrBuilder> 
+        getEntriesOrBuilderList() {
+      return entries_;
+    }
+    /**
+     * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+     */
+    public int getEntriesCount() {
+      return entries_.size();
+    }
+    /**
+     * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry getEntries(int index) {
+      return entries_.get(index);
+    }
+    /**
+     * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+     */
+    public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.EntryOrBuilder getEntriesOrBuilder(
+        int index) {
+      return entries_.get(index);
+    }
+
+    private void initFields() {
+      entries_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < entries_.size(); i++) {
+        output.writeMessage(1, entries_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      for (int i = 0; i < entries_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, entries_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code ided.JumpMap}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMapOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_JumpMap_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_JumpMap_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.class, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Builder.class);
+      }
+
+      // Construct using com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getEntriesFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        if (entriesBuilder_ == null) {
+          entries_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          entriesBuilder_.clear();
+        }
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.internal_static_ided_JumpMap_descriptor;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap getDefaultInstanceForType() {
+        return com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.getDefaultInstance();
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap build() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap buildPartial() {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap result = new com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap(this);
+        int from_bitField0_ = bitField0_;
+        if (entriesBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            entries_ = java.util.Collections.unmodifiableList(entries_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.entries_ = entries_;
+        } else {
+          result.entries_ = entriesBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap) {
+          return mergeFrom((com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap other) {
+        if (other == com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.getDefaultInstance()) return this;
+        if (entriesBuilder_ == null) {
+          if (!other.entries_.isEmpty()) {
+            if (entries_.isEmpty()) {
+              entries_ = other.entries_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureEntriesIsMutable();
+              entries_.addAll(other.entries_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.entries_.isEmpty()) {
+            if (entriesBuilder_.isEmpty()) {
+              entriesBuilder_.dispose();
+              entriesBuilder_ = null;
+              entries_ = other.entries_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              entriesBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getEntriesFieldBuilder() : null;
+            } else {
+              entriesBuilder_.addAllMessages(other.entries_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // repeated .ided.JumpMap.Entry entries = 1;
+      private java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry> entries_ =
+        java.util.Collections.emptyList();
+      private void ensureEntriesIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          entries_ = new java.util.ArrayList<com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry>(entries_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.EntryOrBuilder> entriesBuilder_;
+
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry> getEntriesList() {
+        if (entriesBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(entries_);
+        } else {
+          return entriesBuilder_.getMessageList();
+        }
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public int getEntriesCount() {
+        if (entriesBuilder_ == null) {
+          return entries_.size();
+        } else {
+          return entriesBuilder_.getCount();
+        }
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry getEntries(int index) {
+        if (entriesBuilder_ == null) {
+          return entries_.get(index);
+        } else {
+          return entriesBuilder_.getMessage(index);
+        }
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public Builder setEntries(
+          int index, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry value) {
+        if (entriesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureEntriesIsMutable();
+          entries_.set(index, value);
+          onChanged();
+        } else {
+          entriesBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public Builder setEntries(
+          int index, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder builderForValue) {
+        if (entriesBuilder_ == null) {
+          ensureEntriesIsMutable();
+          entries_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          entriesBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public Builder addEntries(com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry value) {
+        if (entriesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureEntriesIsMutable();
+          entries_.add(value);
+          onChanged();
+        } else {
+          entriesBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public Builder addEntries(
+          int index, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry value) {
+        if (entriesBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureEntriesIsMutable();
+          entries_.add(index, value);
+          onChanged();
+        } else {
+          entriesBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public Builder addEntries(
+          com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder builderForValue) {
+        if (entriesBuilder_ == null) {
+          ensureEntriesIsMutable();
+          entries_.add(builderForValue.build());
+          onChanged();
+        } else {
+          entriesBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public Builder addEntries(
+          int index, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder builderForValue) {
+        if (entriesBuilder_ == null) {
+          ensureEntriesIsMutable();
+          entries_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          entriesBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public Builder addAllEntries(
+          java.lang.Iterable<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry> values) {
+        if (entriesBuilder_ == null) {
+          ensureEntriesIsMutable();
+          super.addAll(values, entries_);
+          onChanged();
+        } else {
+          entriesBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public Builder clearEntries() {
+        if (entriesBuilder_ == null) {
+          entries_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          entriesBuilder_.clear();
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public Builder removeEntries(int index) {
+        if (entriesBuilder_ == null) {
+          ensureEntriesIsMutable();
+          entries_.remove(index);
+          onChanged();
+        } else {
+          entriesBuilder_.remove(index);
+        }
+        return this;
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder getEntriesBuilder(
+          int index) {
+        return getEntriesFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.EntryOrBuilder getEntriesOrBuilder(
+          int index) {
+        if (entriesBuilder_ == null) {
+          return entries_.get(index);  } else {
+          return entriesBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public java.util.List<? extends com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.EntryOrBuilder> 
+           getEntriesOrBuilderList() {
+        if (entriesBuilder_ != null) {
+          return entriesBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(entries_);
+        }
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder addEntriesBuilder() {
+        return getEntriesFieldBuilder().addBuilder(
+            com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder addEntriesBuilder(
+          int index) {
+        return getEntriesFieldBuilder().addBuilder(
+            index, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .ided.JumpMap.Entry entries = 1;</code>
+       */
+      public java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder> 
+           getEntriesBuilderList() {
+        return getEntriesFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.EntryOrBuilder> 
+          getEntriesFieldBuilder() {
+        if (entriesBuilder_ == null) {
+          entriesBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Entry.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.EntryOrBuilder>(
+                  entries_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          entries_ = null;
+        }
+        return entriesBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:ided.JumpMap)
+    }
+
+    static {
+      defaultInstance = new JumpMap(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:ided.JumpMap)
   }
 
   public interface RequestOrBuilder
@@ -6267,6 +7526,20 @@ public final class IdedProtos {
        */
       com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAstOrBuilder getAstOrBuilder();
 
+      // optional .ided.JumpMap jump_map = 2;
+      /**
+       * <code>optional .ided.JumpMap jump_map = 2;</code>
+       */
+      boolean hasJumpMap();
+      /**
+       * <code>optional .ided.JumpMap jump_map = 2;</code>
+       */
+      com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap getJumpMap();
+      /**
+       * <code>optional .ided.JumpMap jump_map = 2;</code>
+       */
+      com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMapOrBuilder getJumpMapOrBuilder();
+
       // repeated .ided.Error errors = 5;
       /**
        * <code>repeated .ided.Error errors = 5;</code>
@@ -6356,10 +7629,23 @@ public final class IdedProtos {
                 bitField0_ |= 0x00000001;
                 break;
               }
+              case 18: {
+                com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Builder subBuilder = null;
+                if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                  subBuilder = jumpMap_.toBuilder();
+                }
+                jumpMap_ = input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.PARSER, extensionRegistry);
+                if (subBuilder != null) {
+                  subBuilder.mergeFrom(jumpMap_);
+                  jumpMap_ = subBuilder.buildPartial();
+                }
+                bitField0_ |= 0x00000002;
+                break;
+              }
               case 42: {
-                if (!((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+                if (!((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
                   errors_ = new java.util.ArrayList<com.github.stepancheg.rustide.client.proto.IdedProtos.Error>();
-                  mutable_bitField0_ |= 0x00000002;
+                  mutable_bitField0_ |= 0x00000004;
                 }
                 errors_.add(input.readMessage(com.github.stepancheg.rustide.client.proto.IdedProtos.Error.PARSER, extensionRegistry));
                 break;
@@ -6372,7 +7658,7 @@ public final class IdedProtos {
           throw new com.google.protobuf.InvalidProtocolBufferException(
               e.getMessage()).setUnfinishedMessage(this);
         } finally {
-          if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
+          if (((mutable_bitField0_ & 0x00000004) == 0x00000004)) {
             errors_ = java.util.Collections.unmodifiableList(errors_);
           }
           this.unknownFields = unknownFields.build();
@@ -6429,6 +7715,28 @@ public final class IdedProtos {
         return ast_;
       }
 
+      // optional .ided.JumpMap jump_map = 2;
+      public static final int JUMP_MAP_FIELD_NUMBER = 2;
+      private com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap jumpMap_;
+      /**
+       * <code>optional .ided.JumpMap jump_map = 2;</code>
+       */
+      public boolean hasJumpMap() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .ided.JumpMap jump_map = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap getJumpMap() {
+        return jumpMap_;
+      }
+      /**
+       * <code>optional .ided.JumpMap jump_map = 2;</code>
+       */
+      public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMapOrBuilder getJumpMapOrBuilder() {
+        return jumpMap_;
+      }
+
       // repeated .ided.Error errors = 5;
       public static final int ERRORS_FIELD_NUMBER = 5;
       private java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.Error> errors_;
@@ -6467,6 +7775,7 @@ public final class IdedProtos {
 
       private void initFields() {
         ast_ = com.github.stepancheg.rustide.client.proto.IdedProtos.LazyAst.getDefaultInstance();
+        jumpMap_ = com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.getDefaultInstance();
         errors_ = java.util.Collections.emptyList();
       }
       private byte memoizedIsInitialized = -1;
@@ -6484,6 +7793,9 @@ public final class IdedProtos {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           output.writeMessage(1, ast_);
         }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          output.writeMessage(2, jumpMap_);
+        }
         for (int i = 0; i < errors_.size(); i++) {
           output.writeMessage(5, errors_.get(i));
         }
@@ -6499,6 +7811,10 @@ public final class IdedProtos {
         if (((bitField0_ & 0x00000001) == 0x00000001)) {
           size += com.google.protobuf.CodedOutputStream
             .computeMessageSize(1, ast_);
+        }
+        if (((bitField0_ & 0x00000002) == 0x00000002)) {
+          size += com.google.protobuf.CodedOutputStream
+            .computeMessageSize(2, jumpMap_);
         }
         for (int i = 0; i < errors_.size(); i++) {
           size += com.google.protobuf.CodedOutputStream
@@ -6613,6 +7929,7 @@ public final class IdedProtos {
         private void maybeForceBuilderInitialization() {
           if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
             getAstFieldBuilder();
+            getJumpMapFieldBuilder();
             getErrorsFieldBuilder();
           }
         }
@@ -6628,9 +7945,15 @@ public final class IdedProtos {
             astBuilder_.clear();
           }
           bitField0_ = (bitField0_ & ~0x00000001);
+          if (jumpMapBuilder_ == null) {
+            jumpMap_ = com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.getDefaultInstance();
+          } else {
+            jumpMapBuilder_.clear();
+          }
+          bitField0_ = (bitField0_ & ~0x00000002);
           if (errorsBuilder_ == null) {
             errors_ = java.util.Collections.emptyList();
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000004);
           } else {
             errorsBuilder_.clear();
           }
@@ -6670,10 +7993,18 @@ public final class IdedProtos {
           } else {
             result.ast_ = astBuilder_.build();
           }
+          if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+            to_bitField0_ |= 0x00000002;
+          }
+          if (jumpMapBuilder_ == null) {
+            result.jumpMap_ = jumpMap_;
+          } else {
+            result.jumpMap_ = jumpMapBuilder_.build();
+          }
           if (errorsBuilder_ == null) {
-            if (((bitField0_ & 0x00000002) == 0x00000002)) {
+            if (((bitField0_ & 0x00000004) == 0x00000004)) {
               errors_ = java.util.Collections.unmodifiableList(errors_);
-              bitField0_ = (bitField0_ & ~0x00000002);
+              bitField0_ = (bitField0_ & ~0x00000004);
             }
             result.errors_ = errors_;
           } else {
@@ -6698,11 +8029,14 @@ public final class IdedProtos {
           if (other.hasAst()) {
             mergeAst(other.getAst());
           }
+          if (other.hasJumpMap()) {
+            mergeJumpMap(other.getJumpMap());
+          }
           if (errorsBuilder_ == null) {
             if (!other.errors_.isEmpty()) {
               if (errors_.isEmpty()) {
                 errors_ = other.errors_;
-                bitField0_ = (bitField0_ & ~0x00000002);
+                bitField0_ = (bitField0_ & ~0x00000004);
               } else {
                 ensureErrorsIsMutable();
                 errors_.addAll(other.errors_);
@@ -6715,7 +8049,7 @@ public final class IdedProtos {
                 errorsBuilder_.dispose();
                 errorsBuilder_ = null;
                 errors_ = other.errors_;
-                bitField0_ = (bitField0_ & ~0x00000002);
+                bitField0_ = (bitField0_ & ~0x00000004);
                 errorsBuilder_ = 
                   com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
                      getErrorsFieldBuilder() : null;
@@ -6868,13 +8202,130 @@ public final class IdedProtos {
           return astBuilder_;
         }
 
+        // optional .ided.JumpMap jump_map = 2;
+        private com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap jumpMap_ = com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.getDefaultInstance();
+        private com.google.protobuf.SingleFieldBuilder<
+            com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMapOrBuilder> jumpMapBuilder_;
+        /**
+         * <code>optional .ided.JumpMap jump_map = 2;</code>
+         */
+        public boolean hasJumpMap() {
+          return ((bitField0_ & 0x00000002) == 0x00000002);
+        }
+        /**
+         * <code>optional .ided.JumpMap jump_map = 2;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap getJumpMap() {
+          if (jumpMapBuilder_ == null) {
+            return jumpMap_;
+          } else {
+            return jumpMapBuilder_.getMessage();
+          }
+        }
+        /**
+         * <code>optional .ided.JumpMap jump_map = 2;</code>
+         */
+        public Builder setJumpMap(com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap value) {
+          if (jumpMapBuilder_ == null) {
+            if (value == null) {
+              throw new NullPointerException();
+            }
+            jumpMap_ = value;
+            onChanged();
+          } else {
+            jumpMapBuilder_.setMessage(value);
+          }
+          bitField0_ |= 0x00000002;
+          return this;
+        }
+        /**
+         * <code>optional .ided.JumpMap jump_map = 2;</code>
+         */
+        public Builder setJumpMap(
+            com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Builder builderForValue) {
+          if (jumpMapBuilder_ == null) {
+            jumpMap_ = builderForValue.build();
+            onChanged();
+          } else {
+            jumpMapBuilder_.setMessage(builderForValue.build());
+          }
+          bitField0_ |= 0x00000002;
+          return this;
+        }
+        /**
+         * <code>optional .ided.JumpMap jump_map = 2;</code>
+         */
+        public Builder mergeJumpMap(com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap value) {
+          if (jumpMapBuilder_ == null) {
+            if (((bitField0_ & 0x00000002) == 0x00000002) &&
+                jumpMap_ != com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.getDefaultInstance()) {
+              jumpMap_ =
+                com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.newBuilder(jumpMap_).mergeFrom(value).buildPartial();
+            } else {
+              jumpMap_ = value;
+            }
+            onChanged();
+          } else {
+            jumpMapBuilder_.mergeFrom(value);
+          }
+          bitField0_ |= 0x00000002;
+          return this;
+        }
+        /**
+         * <code>optional .ided.JumpMap jump_map = 2;</code>
+         */
+        public Builder clearJumpMap() {
+          if (jumpMapBuilder_ == null) {
+            jumpMap_ = com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.getDefaultInstance();
+            onChanged();
+          } else {
+            jumpMapBuilder_.clear();
+          }
+          bitField0_ = (bitField0_ & ~0x00000002);
+          return this;
+        }
+        /**
+         * <code>optional .ided.JumpMap jump_map = 2;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Builder getJumpMapBuilder() {
+          bitField0_ |= 0x00000002;
+          onChanged();
+          return getJumpMapFieldBuilder().getBuilder();
+        }
+        /**
+         * <code>optional .ided.JumpMap jump_map = 2;</code>
+         */
+        public com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMapOrBuilder getJumpMapOrBuilder() {
+          if (jumpMapBuilder_ != null) {
+            return jumpMapBuilder_.getMessageOrBuilder();
+          } else {
+            return jumpMap_;
+          }
+        }
+        /**
+         * <code>optional .ided.JumpMap jump_map = 2;</code>
+         */
+        private com.google.protobuf.SingleFieldBuilder<
+            com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMapOrBuilder> 
+            getJumpMapFieldBuilder() {
+          if (jumpMapBuilder_ == null) {
+            jumpMapBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+                com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMap.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.JumpMapOrBuilder>(
+                    jumpMap_,
+                    getParentForChildren(),
+                    isClean());
+            jumpMap_ = null;
+          }
+          return jumpMapBuilder_;
+        }
+
         // repeated .ided.Error errors = 5;
         private java.util.List<com.github.stepancheg.rustide.client.proto.IdedProtos.Error> errors_ =
           java.util.Collections.emptyList();
         private void ensureErrorsIsMutable() {
-          if (!((bitField0_ & 0x00000002) == 0x00000002)) {
+          if (!((bitField0_ & 0x00000004) == 0x00000004)) {
             errors_ = new java.util.ArrayList<com.github.stepancheg.rustide.client.proto.IdedProtos.Error>(errors_);
-            bitField0_ |= 0x00000002;
+            bitField0_ |= 0x00000004;
            }
         }
 
@@ -7023,7 +8474,7 @@ public final class IdedProtos {
         public Builder clearErrors() {
           if (errorsBuilder_ == null) {
             errors_ = java.util.Collections.emptyList();
-            bitField0_ = (bitField0_ & ~0x00000002);
+            bitField0_ = (bitField0_ & ~0x00000004);
             onChanged();
           } else {
             errorsBuilder_.clear();
@@ -7100,7 +8551,7 @@ public final class IdedProtos {
             errorsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
                 com.github.stepancheg.rustide.client.proto.IdedProtos.Error, com.github.stepancheg.rustide.client.proto.IdedProtos.Error.Builder, com.github.stepancheg.rustide.client.proto.IdedProtos.ErrorOrBuilder>(
                     errors_,
-                    ((bitField0_ & 0x00000002) == 0x00000002),
+                    ((bitField0_ & 0x00000004) == 0x00000004),
                     getParentForChildren(),
                     isClean());
             errors_ = null;
@@ -7702,6 +9153,16 @@ public final class IdedProtos {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_ided_LazyAst_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ided_JumpMap_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ided_JumpMap_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_ided_JumpMap_Entry_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_ided_JumpMap_Entry_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_ided_Request_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -7750,21 +9211,26 @@ public final class IdedProtos {
       "\001 \001(\t\022\034\n\004span\030\002 \001(\0132\016.ided.FileSpan\"5\n\005E" +
       "rror\022\013\n\003msg\030\001 \001(\t\022\037\n\004span\030\002 \001(\0132\021.ided.P" +
       "rojectSpan\"%\n\004File\022\014\n\004name\030\001 \001(\t\022\017\n\007cont" +
-      "ent\030\002 \001(\t\"J\n\nNodeMarker\022\013\n\003pos\030\001 \001(\005\022\014\n\004" +
+      "ent\030\002 \001(\t\"V\n\nNodeMarker\022\013\n\003pos\030\001 \001(\005\022\014\n\004" +
       "open\030\002 \001(\010\022!\n\tnode_type\030\003 \001(\0162\016.ided.Nod" +
-      "eType\",\n\007LazyAst\022!\n\007markers\030\005 \003(\0132\020.ided" +
-      ".NodeMarker\"\274\001\n\007Request\022 \n\004ping\030\001 \001(\0132\022." +
-      "ided.Request.Ping\022&\n\007analyze\030\002 \001(\0132\025.ide",
-      "d.Request.Analyze\022/\n\017unknown_command\030\347\007 " +
-      "\001(\0132\025.ided.Request.Unknown\032\006\n\004Ping\032#\n\007An" +
-      "alyze\022\030\n\004file\030\001 \001(\0132\n.ided.File\032\t\n\007Unkno" +
-      "wn\"\242\001\n\010Response\022!\n\004ping\030\001 \001(\0132\023.ided.Res" +
-      "ponse.Ping\022\'\n\007analyze\030\002 \001(\0132\026.ided.Respo" +
-      "nse.Analyze\032\006\n\004Ping\032B\n\007Analyze\022\032\n\003ast\030\001 " +
-      "\001(\0132\r.ided.LazyAst\022\033\n\006errors\030\005 \003(\0132\013.ide" +
-      "d.Error*2\n\010NodeType\022\014\n\010NodeRoot\020\001\022\n\n\006Nod" +
-      "eFn\020\002\022\014\n\010NodeStmt\020\003B8\n*com.github.stepan" +
-      "cheg.rustide.client.protoB\nIdedProtos"
+      "eType\022\n\n\002id\030\004 \001(\005\",\n\007LazyAst\022!\n\007markers\030" +
+      "\005 \003(\0132\020.ided.NodeMarker\"h\n\007JumpMap\022$\n\007en" +
+      "tries\030\001 \003(\0132\023.ided.JumpMap.Entry\0327\n\005Entr",
+      "y\022\026\n\016source_node_id\030\001 \001(\005\022\026\n\016target_node" +
+      "_id\030\002 \001(\005\"\274\001\n\007Request\022 \n\004ping\030\001 \001(\0132\022.id" +
+      "ed.Request.Ping\022&\n\007analyze\030\002 \001(\0132\025.ided." +
+      "Request.Analyze\022/\n\017unknown_command\030\347\007 \001(" +
+      "\0132\025.ided.Request.Unknown\032\006\n\004Ping\032#\n\007Anal" +
+      "yze\022\030\n\004file\030\001 \001(\0132\n.ided.File\032\t\n\007Unknown" +
+      "\"\303\001\n\010Response\022!\n\004ping\030\001 \001(\0132\023.ided.Respo" +
+      "nse.Ping\022\'\n\007analyze\030\002 \001(\0132\026.ided.Respons" +
+      "e.Analyze\032\006\n\004Ping\032c\n\007Analyze\022\032\n\003ast\030\001 \001(" +
+      "\0132\r.ided.LazyAst\022\037\n\010jump_map\030\002 \001(\0132\r.ide",
+      "d.JumpMap\022\033\n\006errors\030\005 \003(\0132\013.ided.Error*`" +
+      "\n\010NodeType\022\014\n\010NodeRoot\020\001\022\n\n\006NodeFn\020\002\022\014\n\010" +
+      "NodeStmt\020\003\022\021\n\rNodeStructDef\020\004\022\n\n\006NodeTy\020" +
+      "\005\022\r\n\tNodeOther\020dB8\n*com.github.stepanche" +
+      "g.rustide.client.protoB\nIdedProtos"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -7800,15 +9266,27 @@ public final class IdedProtos {
           internal_static_ided_NodeMarker_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ided_NodeMarker_descriptor,
-              new java.lang.String[] { "Pos", "Open", "NodeType", });
+              new java.lang.String[] { "Pos", "Open", "NodeType", "Id", });
           internal_static_ided_LazyAst_descriptor =
             getDescriptor().getMessageTypes().get(5);
           internal_static_ided_LazyAst_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ided_LazyAst_descriptor,
               new java.lang.String[] { "Markers", });
-          internal_static_ided_Request_descriptor =
+          internal_static_ided_JumpMap_descriptor =
             getDescriptor().getMessageTypes().get(6);
+          internal_static_ided_JumpMap_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ided_JumpMap_descriptor,
+              new java.lang.String[] { "Entries", });
+          internal_static_ided_JumpMap_Entry_descriptor =
+            internal_static_ided_JumpMap_descriptor.getNestedTypes().get(0);
+          internal_static_ided_JumpMap_Entry_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_ided_JumpMap_Entry_descriptor,
+              new java.lang.String[] { "SourceNodeId", "TargetNodeId", });
+          internal_static_ided_Request_descriptor =
+            getDescriptor().getMessageTypes().get(7);
           internal_static_ided_Request_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ided_Request_descriptor,
@@ -7832,7 +9310,7 @@ public final class IdedProtos {
               internal_static_ided_Request_Unknown_descriptor,
               new java.lang.String[] { });
           internal_static_ided_Response_descriptor =
-            getDescriptor().getMessageTypes().get(7);
+            getDescriptor().getMessageTypes().get(8);
           internal_static_ided_Response_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ided_Response_descriptor,
@@ -7848,7 +9326,7 @@ public final class IdedProtos {
           internal_static_ided_Response_Analyze_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_ided_Response_Analyze_descriptor,
-              new java.lang.String[] { "Ast", "Errors", });
+              new java.lang.String[] { "Ast", "JumpMap", "Errors", });
           return null;
         }
       };

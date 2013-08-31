@@ -27,16 +27,28 @@ enum NodeType {
     NodeRoot = 1;
     NodeFn = 2;
     NodeStmt = 3;
+    NodeStructDef = 4;
+    NodeTy = 5;
+    NodeOther = 100;
 }
 
 message NodeMarker {
     optional int32 pos = 1;
     optional bool open = 2;
     optional NodeType node_type = 3;
+    optional int32 id = 4;
 }
 
 message LazyAst {
     repeated NodeMarker markers = 5;
+}
+
+message JumpMap {
+    message Entry {
+        optional int32 source_node_id = 1;
+        optional int32 target_node_id = 2;
+    }
+    repeated Entry entries = 1;
 }
 
 message Request {
@@ -62,6 +74,7 @@ message Response {
 
     message Analyze {
         optional LazyAst ast = 1;
+        optional JumpMap jump_map = 2;
         repeated Error errors = 5;
     }
 

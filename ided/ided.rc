@@ -52,10 +52,13 @@ struct BuildAstVisitor<'self> {
 }
 
 impl<'self> BuildAstVisitor<'self> {
-    fn marker(&mut self, open: bool, span: span, node_type: NodeType) {
+    fn marker(&mut self, open: bool, span: span, node_type: NodeType, node_id: Option<NodeId>) {
         let mut marker = NodeMarker::new();
         marker.set_open(open);
         marker.set_node_type(node_type);
+        if node_id.is_some() {
+            marker.set_id(node_id.unwrap() as i32);
+        }
         let CharPos(pos) = self.code_map.bytepos_to_local_charpos(match open {
             true  => span.lo,
             false => span.hi,
@@ -64,41 +67,109 @@ impl<'self> BuildAstVisitor<'self> {
         self.ast.markers.push(marker);
     }
 
-    fn open(&mut self, span: span, node_type: NodeType) {
-        self.marker(true, span, node_type);
+    fn open(&mut self, span: span, node_type: NodeType, node_id: Option<NodeId>) {
+        self.marker(true, span, node_type, node_id);
     }
 
-    fn close(&mut self, span: span, node_type: NodeType) {
-        self.marker(false, span, node_type);
+    fn close(&mut self, span: span, node_type: NodeType, node_id: Option<NodeId>) {
+        self.marker(false, span, node_type, node_id);
     }
 
-    fn span(&mut self, span: span, node_type: NodeType, cb: &fn(&mut BuildAstVisitor)) {
+    fn span(&mut self, span: span, node_type: NodeType, node_id: Option<NodeId>, cb: &fn(&mut BuildAstVisitor)) {
         let ide_span = span_to_file_span(span, self.code_map);
-        self.open(span, node_type);
+        self.open(span, node_type, node_id);
         cb(self);
-        self.close(span, node_type);
+        self.close(span, node_type, node_id);
     }
 }
 
 impl<'self> visit::Visitor<()> for BuildAstVisitor<'self> {
     fn visit_mod(&mut self, m: &_mod, s: span, n: NodeId, e: ()) {
-        do self.span(s, NodeRoot) |v| {
+        do self.span(s, NodeRoot, Some(n)) |v| {
             walk_mod(v, m, e)
         }
     }
 
     fn visit_fn(&mut self, fk:&fn_kind, fd:&fn_decl, b:&Block, s:span, n:NodeId, e:()) {
-        do self.span(s, NodeFn) |v| {
+        do self.span(s, NodeFn, Some(n)) |v| {
             walk_fn(v, fk, fd, b, s, n , e);
         };
     }
 
     fn visit_stmt(&mut self, s:@stmt, e:()) {
-        do self.span(s.span, NodeStmt) |v| {
+        let node_id = match s.node {
+            stmt_decl(_, node_id) | stmt_expr(_, node_id) | stmt_semi(_, node_id) => Some(node_id),
+            _ => None,
+        };
+        do self.span(s.span, NodeStmt, node_id) |v| {
             walk_stmt(v, s, e);
         }
     }
+
+    fn visit_struct_def(&mut self, a:@struct_def, b:ident, c:&Generics, d:NodeId, e:()) {
+        walk_struct_def(self, a, b, c, d, e);
+    }
+
+    fn visit_ty(&mut self, _t:&Ty, e:()) {
+        do self.span(_t.span, NodeTy, Some(_t.id)) |v| {
+            walk_ty(v, _t, e);
+        }
+    }
+
+    fn visit_item(&mut self, item: @item, e: ()) {
+        let node_type = match item.node {
+            item_struct(*) => Some(NodeStructDef),
+            item_ty(*) => Some(NodeTy),
+            _ => None,
+        };
+        match node_type {
+            Some(t) => {
+                    //printfln!("%?", item.node);
+                    do self.span(item.span, NodeStructDef, Some(item.id)) |v| {
+                        walk_item(v, item, e);
+                    }
+                },
+            None => walk_item(self, item, e),
+        };
+    }
 }
+
+
+struct BuildJumpMapVisitor<'self> {
+    code_map: &'self CodeMap,
+    ctxt: ty::ctxt,
+    jump_map: JumpMap,
+}
+
+impl<'self> BuildJumpMapVisitor<'self> {
+    fn for_ty(&mut self, _t: &Ty) {
+        let mut e = JumpMap_Entry::new();
+        e.set_source_node_id(_t.id as i32);
+        let t = self.ctxt.node_types.find(&(_t.id as uint));
+        let path_node_id = match _t.node {
+            ty_path(_, _, node_id) => node_id,
+            _ => return,
+        };
+        let d = match self.ctxt.def_map.find(&path_node_id) {
+            Some(x) => x,
+            None => return,
+        };
+        let id = match *d {
+            def_ty(id) => id.node,
+            _ => return,
+        };
+        e.set_target_node_id(id as i32);
+        self.jump_map.add_entries(e);
+    }
+}
+
+impl<'self> visit::Visitor<()> for BuildJumpMapVisitor<'self> {
+    fn visit_ty(&mut self, _t:&Ty, _e:()) {
+        self.for_ty(_t);
+        walk_ty(self, _t, _e);
+    }
+}
+
 
 
 struct IdeSession {
@@ -166,16 +237,25 @@ impl IdeSession {
             let node_types = analysis.ty_cx.node_types;
             let ast_map = analysis.ty_cx.items;
 
-            let tmp = LazyAst::new();
+            let ast_tmp = LazyAst::new();
             let mut build_ast_visitor = BuildAstVisitor {
                 code_map: session.codemap,
-                ast: tmp,
+                ast: ast_tmp,
             };
             visit::walk_crate(&mut build_ast_visitor, crate, ());
+
+            let jump_map_tmp = JumpMap::new();
+            let mut build_jump_map_visitor = BuildJumpMapVisitor {
+                code_map: session.codemap,
+                ctxt: analysis.ty_cx,
+                jump_map: jump_map_tmp,
+            };
+            visit::walk_crate(&mut build_jump_map_visitor, crate, ());
 
             let mut r = Response_Analyze::new();
             r.set_errors(errors.to_owned());
             r.set_ast(build_ast_visitor.ast);
+            r.set_jump_map(build_jump_map_visitor.jump_map);
             r
         } {
             Ok(r) => r,

@@ -662,6 +662,7 @@ pub struct NodeMarker {
     pos: Option<i32>,
     open: Option<bool>,
     node_type: Option<NodeType>,
+    id: Option<i32>,
 }
 
 impl<'self> NodeMarker {
@@ -670,6 +671,7 @@ impl<'self> NodeMarker {
             pos: None,
             open: None,
             node_type: None,
+            id: None,
         }
     }
 
@@ -681,6 +683,7 @@ impl<'self> NodeMarker {
 //             pos: None,
 //             open: None,
 //             node_type: None,
+//             id: None,
 //         };
 //         &'static instance
         fail!("TODO");
@@ -703,6 +706,12 @@ impl<'self> NodeMarker {
         match self.node_type {
             Some(ref v) => {
                 os.write_enum(3, *v as i32);
+            },
+            None => {},
+        };
+        match self.id {
+            Some(ref v) => {
+                os.write_int32(4, *v);
             },
             None => {},
         };
@@ -785,6 +794,32 @@ impl<'self> NodeMarker {
     pub fn get_node_type(&self) -> NodeType {
         self.node_type.unwrap_or_default(NodeType::new(0))
     }
+
+    pub fn clear_id(&mut self) {
+        self.id = None;
+    }
+
+    pub fn has_id(&self) -> bool {
+        self.id.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_id(&mut self, v: i32) {
+        self.id = Some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_id(&'self mut self) -> &'self mut i32 {
+        if self.id.is_none() {
+            self.id = Some(0);
+        };
+        self.id.get_mut_ref()
+    }
+
+    pub fn get_id(&self) -> i32 {
+        self.id.unwrap_or_default(0)
+    }
 }
 
 impl Message for NodeMarker {
@@ -796,6 +831,7 @@ impl Message for NodeMarker {
         self.clear_pos();
         self.clear_open();
         self.clear_node_type();
+        self.clear_id();
     }
 
     fn is_initialized(&self) -> bool {
@@ -821,6 +857,11 @@ impl Message for NodeMarker {
                     let tmp = NodeType::new(is.read_int32());
                     self.node_type = Some(tmp);
                 },
+                4 => {
+                    assert_eq!(wire_format::WireTypeVarint, wire_type);
+                    let tmp = is.read_int32();
+                    self.id = Some(tmp);
+                },
                 _ => {
                     // TODO: store in unknown fields
                     is.skip_field(wire_type);
@@ -842,6 +883,9 @@ impl Message for NodeMarker {
         };
         for value in self.node_type.iter() {
             my_size += rt::enum_size(3, *value);
+        };
+        for value in self.id.iter() {
+            my_size += rt::value_size(4, *value, wire_format::WireTypeVarint);
         };
         sizes[pos] = my_size;
         // value is returned for convenience
@@ -951,6 +995,272 @@ impl Message for LazyAst {
         for value in self.markers.iter() {
             let len = value.compute_sizes(sizes);
             my_size += 1 + rt::compute_raw_varint32_size(len) + len;
+        };
+        sizes[pos] = my_size;
+        // value is returned for convenience
+        my_size
+    }
+
+    fn write_to(&self, os: &mut CodedOutputStream) {
+        self.check_initialized();
+        let mut sizes: ~[u32] = ~[];
+        self.compute_sizes(&mut sizes);
+        let mut sizes_pos = 1; // first element is self
+        self.write_to_with_computed_sizes(os, sizes, &mut sizes_pos);
+        assert_eq!(sizes_pos, sizes.len());
+    }
+}
+
+#[deriving(Clone,Eq)]
+pub struct JumpMap {
+    entries: ~[JumpMap_Entry],
+}
+
+impl<'self> JumpMap {
+    pub fn new() -> JumpMap {
+        JumpMap {
+            entries: ~[],
+        }
+    }
+
+    pub fn default_instance() -> &'static JumpMap {
+//         // doesn't work, because rust doen't implement static constants of types like ~str
+//         // https://github.com/mozilla/rust/issues/8406
+//         static instance: JumpMap = JumpMap {
+//             entries: ~[],
+//         };
+//         &'static instance
+        fail!("TODO");
+    }
+
+    pub fn write_to_with_computed_sizes(&self, os: &mut CodedOutputStream, sizes: &[u32], sizes_pos: &mut uint) {
+        for v in self.entries.iter() {
+            os.write_tag(1, wire_format::WireTypeLengthDelimited);
+            os.write_raw_varint32(sizes[*sizes_pos]);
+            *sizes_pos += 1;
+            v.write_to_with_computed_sizes(os, sizes, sizes_pos);
+        };
+    }
+
+    pub fn clear_entries(&mut self) {
+        self.entries.clear();
+    }
+
+    // Param is passed by value, moved
+    pub fn set_entries(&mut self, v: ~[JumpMap_Entry]) {
+        self.entries = v;
+    }
+
+    // Mutable pointer to the field.
+    pub fn mut_entries(&'self mut self) -> &'self mut ~[JumpMap_Entry] {
+        &mut self.entries
+    }
+
+    pub fn get_entries(&'self self) -> &'self [JumpMap_Entry] {
+        rt::as_slice_tmp(&self.entries)
+    }
+
+    pub fn add_entries(&mut self, v: JumpMap_Entry) {
+        self.entries.push(v);
+    }
+}
+
+impl Message for JumpMap {
+    fn new() -> JumpMap {
+        JumpMap::new()
+    }
+
+    fn clear(&mut self) {
+        self.clear_entries();
+    }
+
+    fn is_initialized(&self) -> bool {
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut CodedInputStream) {
+        while !is.eof() {
+            let (field_number, wire_type) = is.read_tag_unpack();
+            match field_number {
+                1 => {
+                    assert_eq!(wire_format::WireTypeLengthDelimited, wire_type);
+                    let mut tmp = JumpMap_Entry::new();
+                    is.merge_message(&mut tmp);
+                    self.entries.push(tmp);
+                },
+                _ => {
+                    // TODO: store in unknown fields
+                    is.skip_field(wire_type);
+                },
+            };
+        }
+    }
+
+    // Compute sizes of nested messages
+    fn compute_sizes(&self, sizes: &mut ~[u32]) -> u32 {
+        let pos = sizes.len();
+        sizes.push(0);
+        let mut my_size = 0;
+        for value in self.entries.iter() {
+            let len = value.compute_sizes(sizes);
+            my_size += 1 + rt::compute_raw_varint32_size(len) + len;
+        };
+        sizes[pos] = my_size;
+        // value is returned for convenience
+        my_size
+    }
+
+    fn write_to(&self, os: &mut CodedOutputStream) {
+        self.check_initialized();
+        let mut sizes: ~[u32] = ~[];
+        self.compute_sizes(&mut sizes);
+        let mut sizes_pos = 1; // first element is self
+        self.write_to_with_computed_sizes(os, sizes, &mut sizes_pos);
+        assert_eq!(sizes_pos, sizes.len());
+    }
+}
+
+#[deriving(Clone,Eq)]
+pub struct JumpMap_Entry {
+    source_node_id: Option<i32>,
+    target_node_id: Option<i32>,
+}
+
+impl<'self> JumpMap_Entry {
+    pub fn new() -> JumpMap_Entry {
+        JumpMap_Entry {
+            source_node_id: None,
+            target_node_id: None,
+        }
+    }
+
+    pub fn default_instance() -> &'static JumpMap_Entry {
+//         // doesn't work, because rust master has broken static constants that contains None of ~str
+//         // https://github.com/mozilla/rust/issues/8578
+//         // TODO: should at least keep static without ~str
+//         static instance: JumpMap_Entry = JumpMap_Entry {
+//             source_node_id: None,
+//             target_node_id: None,
+//         };
+//         &'static instance
+        fail!("TODO");
+    }
+
+    #[allow(unused_variable)]
+    pub fn write_to_with_computed_sizes(&self, os: &mut CodedOutputStream, sizes: &[u32], sizes_pos: &mut uint) {
+        match self.source_node_id {
+            Some(ref v) => {
+                os.write_int32(1, *v);
+            },
+            None => {},
+        };
+        match self.target_node_id {
+            Some(ref v) => {
+                os.write_int32(2, *v);
+            },
+            None => {},
+        };
+    }
+
+    pub fn clear_source_node_id(&mut self) {
+        self.source_node_id = None;
+    }
+
+    pub fn has_source_node_id(&self) -> bool {
+        self.source_node_id.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_source_node_id(&mut self, v: i32) {
+        self.source_node_id = Some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_source_node_id(&'self mut self) -> &'self mut i32 {
+        if self.source_node_id.is_none() {
+            self.source_node_id = Some(0);
+        };
+        self.source_node_id.get_mut_ref()
+    }
+
+    pub fn get_source_node_id(&self) -> i32 {
+        self.source_node_id.unwrap_or_default(0)
+    }
+
+    pub fn clear_target_node_id(&mut self) {
+        self.target_node_id = None;
+    }
+
+    pub fn has_target_node_id(&self) -> bool {
+        self.target_node_id.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_target_node_id(&mut self, v: i32) {
+        self.target_node_id = Some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_target_node_id(&'self mut self) -> &'self mut i32 {
+        if self.target_node_id.is_none() {
+            self.target_node_id = Some(0);
+        };
+        self.target_node_id.get_mut_ref()
+    }
+
+    pub fn get_target_node_id(&self) -> i32 {
+        self.target_node_id.unwrap_or_default(0)
+    }
+}
+
+impl Message for JumpMap_Entry {
+    fn new() -> JumpMap_Entry {
+        JumpMap_Entry::new()
+    }
+
+    fn clear(&mut self) {
+        self.clear_source_node_id();
+        self.clear_target_node_id();
+    }
+
+    fn is_initialized(&self) -> bool {
+        true
+    }
+
+    fn merge_from(&mut self, is: &mut CodedInputStream) {
+        while !is.eof() {
+            let (field_number, wire_type) = is.read_tag_unpack();
+            match field_number {
+                1 => {
+                    assert_eq!(wire_format::WireTypeVarint, wire_type);
+                    let tmp = is.read_int32();
+                    self.source_node_id = Some(tmp);
+                },
+                2 => {
+                    assert_eq!(wire_format::WireTypeVarint, wire_type);
+                    let tmp = is.read_int32();
+                    self.target_node_id = Some(tmp);
+                },
+                _ => {
+                    // TODO: store in unknown fields
+                    is.skip_field(wire_type);
+                },
+            };
+        }
+    }
+
+    // Compute sizes of nested messages
+    fn compute_sizes(&self, sizes: &mut ~[u32]) -> u32 {
+        let pos = sizes.len();
+        sizes.push(0);
+        let mut my_size = 0;
+        for value in self.source_node_id.iter() {
+            my_size += rt::value_size(1, *value, wire_format::WireTypeVarint);
+        };
+        for value in self.target_node_id.iter() {
+            my_size += rt::value_size(2, *value, wire_format::WireTypeVarint);
         };
         sizes[pos] = my_size;
         // value is returned for convenience
@@ -1702,6 +2012,7 @@ impl Message for Response_Ping {
 #[deriving(Clone,Eq)]
 pub struct Response_Analyze {
     ast: Option<LazyAst>,
+    jump_map: Option<JumpMap>,
     errors: ~[Error],
 }
 
@@ -1709,6 +2020,7 @@ impl<'self> Response_Analyze {
     pub fn new() -> Response_Analyze {
         Response_Analyze {
             ast: None,
+            jump_map: None,
             errors: ~[],
         }
     }
@@ -1718,6 +2030,7 @@ impl<'self> Response_Analyze {
 //         // https://github.com/mozilla/rust/issues/8406
 //         static instance: Response_Analyze = Response_Analyze {
 //             ast: None,
+//             jump_map: None,
 //             errors: ~[],
 //         };
 //         &'static instance
@@ -1728,6 +2041,15 @@ impl<'self> Response_Analyze {
         match self.ast {
             Some(ref v) => {
                 os.write_tag(1, wire_format::WireTypeLengthDelimited);
+                os.write_raw_varint32(sizes[*sizes_pos]);
+                *sizes_pos += 1;
+                v.write_to_with_computed_sizes(os, sizes, sizes_pos);
+            },
+            None => {},
+        };
+        match self.jump_map {
+            Some(ref v) => {
+                os.write_tag(2, wire_format::WireTypeLengthDelimited);
                 os.write_raw_varint32(sizes[*sizes_pos]);
                 *sizes_pos += 1;
                 v.write_to_with_computed_sizes(os, sizes, sizes_pos);
@@ -1771,6 +2093,35 @@ impl<'self> Response_Analyze {
         }
     }
 
+    pub fn clear_jump_map(&mut self) {
+        self.jump_map = None;
+    }
+
+    pub fn has_jump_map(&self) -> bool {
+        self.jump_map.is_some()
+    }
+
+    // Param is passed by value, moved
+    pub fn set_jump_map(&mut self, v: JumpMap) {
+        self.jump_map = Some(v);
+    }
+
+    // Mutable pointer to the field.
+    // If field is not initialized, it is initialized with default value first.
+    pub fn mut_jump_map(&'self mut self) -> &'self mut JumpMap {
+        if self.jump_map.is_none() {
+            self.jump_map = Some(JumpMap::new());
+        };
+        self.jump_map.get_mut_ref()
+    }
+
+    pub fn get_jump_map(&'self self) -> &'self JumpMap {
+        match self.jump_map {
+            Some(ref v) => v,
+            None => JumpMap::default_instance(),
+        }
+    }
+
     pub fn clear_errors(&mut self) {
         self.errors.clear();
     }
@@ -1801,6 +2152,7 @@ impl Message for Response_Analyze {
 
     fn clear(&mut self) {
         self.clear_ast();
+        self.clear_jump_map();
         self.clear_errors();
     }
 
@@ -1817,6 +2169,12 @@ impl Message for Response_Analyze {
                     let mut tmp = LazyAst::new();
                     is.merge_message(&mut tmp);
                     self.ast = Some(tmp);
+                },
+                2 => {
+                    assert_eq!(wire_format::WireTypeLengthDelimited, wire_type);
+                    let mut tmp = JumpMap::new();
+                    is.merge_message(&mut tmp);
+                    self.jump_map = Some(tmp);
                 },
                 5 => {
                     assert_eq!(wire_format::WireTypeLengthDelimited, wire_type);
@@ -1838,6 +2196,10 @@ impl Message for Response_Analyze {
         sizes.push(0);
         let mut my_size = 0;
         for value in self.ast.iter() {
+            let len = value.compute_sizes(sizes);
+            my_size += 1 + rt::compute_raw_varint32_size(len) + len;
+        };
+        for value in self.jump_map.iter() {
             let len = value.compute_sizes(sizes);
             my_size += 1 + rt::compute_raw_varint32_size(len) + len;
         };
@@ -1865,6 +2227,9 @@ pub enum NodeType {
     NodeRoot = 1,
     NodeFn = 2,
     NodeStmt = 3,
+    NodeStructDef = 4,
+    NodeTy = 5,
+    NodeOther = 100,
 }
 
 impl NodeType {
@@ -1873,6 +2238,9 @@ impl NodeType {
             1 => NodeRoot,
             2 => NodeFn,
             3 => NodeStmt,
+            4 => NodeStructDef,
+            5 => NodeTy,
+            100 => NodeOther,
             _ => fail!()
         }
     }

@@ -1,0 +1,32 @@
+<idea-plugin version="2">
+    <id>com.github.stepancheg.rustide.idea</id>
+    <name>Plugin display name here</name>
+    <version>1.0</version>
+    <vendor email="stepan.koltsov@gmail.com" url="https://github.com/stepancheg/rust-ide/">Stepan Koltsov</vendor>
+
+    <description>Rust suppoer</description>
+
+    <change-notes>Nothing changed</change-notes>
+
+    <!-- please see http://confluence.jetbrains.net/display/IDEADEV/Build+Number+Ranges for description -->
+    <idea-version since-build="107.105"/>
+
+    <depends>com.intellij.modules.lang</depends>
+
+    <application-components>
+    </application-components>
+
+    <project-components>
+    </project-components>
+
+    <actions>
+    </actions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <fileTypeFactory implementation="com.github.stepancheg.rustide.idea.RustFileTypeFactory"/>
+        <!--
+        <lang.parserDefinition language="Rust" implementationClass="com.github.stepancheg.rustide.idea.RustParserDefinition"/>
+        -->
+        <lang.syntaxHighlighterFactory key="Rust" implementationClass="com.github.stepancheg.rustide.idea.RustSyntaxHighlighterFactory"/>
+    </extensions>
+</idea-plugin>

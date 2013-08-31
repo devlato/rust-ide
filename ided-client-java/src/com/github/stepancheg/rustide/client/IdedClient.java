@@ -106,8 +106,9 @@ public class IdedClient {
         boolean ok = false;
         try {
             ProcessBuilder builder = new ProcessBuilder();
-            builder.environment().put("RUST_HOME", new File("../rust/x86_64-apple-darwin/stage2").getAbsolutePath());
-            builder.command("../ided/ided");
+            Paths paths = new Paths();
+            builder.environment().put("RUST_HOME", paths.getRustHome().getPath());
+            builder.command(paths.getIded().getPath());
             process = builder.start();
 
             stdoutReader = new Thread(new StdoutReader(process.getInputStream()));
@@ -180,6 +181,8 @@ public class IdedClient {
     }
 
     public void close() {
-        process.destroy();
+        if (process != null) {
+            process.destroy();
+        }
     }
 }
